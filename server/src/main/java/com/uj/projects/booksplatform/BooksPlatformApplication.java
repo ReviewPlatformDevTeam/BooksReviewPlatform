@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 
 
 @SpringBootApplication
-public class BooksApplication {
+public class BooksPlatformApplication {
 
 
 	@Autowired
@@ -29,7 +29,7 @@ public class BooksApplication {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(BooksApplication.class, args);
+		SpringApplication.run(BooksPlatformApplication.class, args);
 	}
 
 }
