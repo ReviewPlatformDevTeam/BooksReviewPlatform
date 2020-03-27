@@ -6,8 +6,15 @@
     "@testing-library/jest-dom": "^5.1.1",
     "@testing-library/react": "^10.0.1",
     "@testing-library/user-event": "^10.0.0",
+    "antd": "^4.0.4",
+    "enquire-js": "^0.2.1",
+    "rc-queue-anim": "^1.8.4",
+    "rc-scroll-anim": "^2.7.4",
+    "rc-tween-one": "^2.6.8",
     "react": "^16.13.1",
     "react-dom": "^16.13.0",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0"
   },
   "scripts": {
