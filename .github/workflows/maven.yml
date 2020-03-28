@@ -21,10 +21,17 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Maven
-      run: mvn -B package --file pom.xml -B verify --file pom-ci.xml
+      run: mvn -B package --file pom.xml
       working-directory: ./server
-    - name: Scope for Maven
-   
+    
+    - uses: actions/checkout@v2
+    - name: Run tests
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - name: Build with Maven
+      run: mvn test
+      working-directory: ./server
+  
 
- 
- 
+    
