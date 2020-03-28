@@ -12,7 +12,13 @@
     "rc-scroll-anim": "^2.7.4",
     "rc-tween-one": "^2.6.8",
     "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
     "build": "react-scripts build",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
