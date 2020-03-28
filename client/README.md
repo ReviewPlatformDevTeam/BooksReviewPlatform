@@ -15,6 +15,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 ## Structure of project
 
 1. Every view in separated directory with all needed components to create this view <br />
-e.g. MainView.js in directory ./Main
+e.g. MainView.js in directory ./src/Main
 2. If you create new view, please match it with url in routes.js
-3. If you use some local pictures please put it directory ./pictures
+3. If you use some local pictures please put it in directory ./src/pictures
