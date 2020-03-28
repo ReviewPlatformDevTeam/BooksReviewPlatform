@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout, Menu } from 'antd';
 import { Link, withRouter } from 'react-router-dom';
-import { HomeOutlined } from '@ant-design/icons';
+import logo from '../pictures/Common_logo.png';
 
 
 const { Header, Content } = Layout;
@@ -15,13 +15,13 @@ class CustomLayout extends React.Component{
     render(){
         return (
         <Layout className="layout">
-            <Header style={{ position: 'fixed', zIndex: 1, width: '100%', background: 'rgb(0, 17, 53)' }}>
-            <div style={{color: "white", float: "left", width: "200px"}}>
-                <HomeOutlined />
-                <Link style={{color: "wheat"}} to="/main">  Book Review Platform </Link>
+            <Header style={{ position: 'fixed', zIndex: 1, width: '100%', background: '#ffffff' }}>
+            <div style={{color: "black", float: "left", width: "200px"}}>
+                <img src={logo} alt='logo'/>
+                <Link style={{color: "black"}} to="/main">  Book Review Platform </Link>
             </div>
             <Menu
-                theme="dark"
+                theme="light"
                 mode="horizontal"
                 style={{lineHeight: '64px',}} >
                 <Menu.Item

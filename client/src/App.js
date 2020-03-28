@@ -4,7 +4,6 @@ import './App.css';
 import BaseRouter from './routes';
 import Layout from './Common/Layout.js';
 import 'antd/dist/antd.css';
-import MainView from './Main/MainView';
 
 
 class App extends Component {
