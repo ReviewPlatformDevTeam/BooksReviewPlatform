@@ -28,7 +28,7 @@ public class JwtFilter implements javax.servlet.Filter {
             try {
 
                 String encoded = Base64.getEncoder().encodeToString(LoginResources.JWT_SECRET);
-                String token = header.substring(7);
+                String token = header.substring("Bearer ".length());
                 Claims claims = Jwts.parser().setSigningKey(encoded).parseClaimsJws(token).getBody();
                 servletRequest.setAttribute("claims", claims);
             } catch (final SignatureException e) {
