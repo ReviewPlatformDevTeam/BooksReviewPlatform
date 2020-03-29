@@ -1,6 +1,6 @@
-package com.uj.projects.booksplatform.repository;
+package com.uj.projects.booksplatform.book.repository;
 
-import com.uj.projects.booksplatform.Entity.Book;
+import com.uj.projects.booksplatform.book.Entity.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

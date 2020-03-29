@@ -1,14 +1,14 @@
-package com.uj.projects.booksplatform.controller;
+package com.uj.projects.booksplatform.book.controller;
 
-import com.uj.projects.booksplatform.Entity.Book;
-import com.uj.projects.booksplatform.repository.BookRepository;
+import com.uj.projects.booksplatform.book.Entity.Book;
+import com.uj.projects.booksplatform.book.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-public class ExampleController{
+public class BookController {
 
     @Autowired
     BookRepository bookRepository;

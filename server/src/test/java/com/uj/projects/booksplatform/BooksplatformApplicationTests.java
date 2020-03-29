@@ -8,6 +8,7 @@ class BooksplatformApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 	}
 
 }
