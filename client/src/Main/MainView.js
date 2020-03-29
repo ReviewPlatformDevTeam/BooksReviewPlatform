@@ -11,15 +11,17 @@ class MainView extends Component{
   state = {
     show: true
   };
+
+
   onClick = () => {
     this.setState({
       show: !this.state.show
     });
   }
-  render() {
+
+  headerDiv = () => {
     return (
-      <div className="Main" >
-          <div
+      <div
           style={{height: "100vh", backgroundColor: "transparent"}}>
             <QueueAnim delay={400} >
               <div key="a">
@@ -27,27 +29,46 @@ class MainView extends Component{
               </div>
             </QueueAnim>
             <DownOutlined style={{ fontSize: "30px", top: "90%", color: "white", position: "absolute" }}/>
+      </div>
+    );
+  }
+
+  introDiv = () => {
+    return (
+      <OverPack style={{ overflow: 'hidden' }} playScale={0.4} >
+      <QueueAnim style={{backgroundColor: "#ffffff"}}>
+          <div key="a" style={{padding: "2%", fontWeight: "bold", fontSize: "x-large"}}>
+              What is Book Review Platform ?
           </div>
-          <OverPack style={{ overflow: 'hidden' }} playScale={0.4} >
-            <QueueAnim style={{backgroundColor: "#ffffff"}}>
-                <div key="a" style={{padding: "2%", fontWeight: "bold", fontSize: "x-large"}}>
-                    What is Book Review Platform ?
-                </div>
-                <div key="b" style={{paddingLeft: "10%", paddingRight: "10%", display: "flex"}}>
-                  <div style={{float: "left", fontSize: "larger", textAlign: "left", width: "60vw", margin: "5%"}} >
-                    Book Review Platform was created to let all bookworms explor world of books. Thanks to our platform 
-                    you can find interesting books, give your opinion about it or read reviews to make sure that book is
-                    worth to be read.
-                    <br />
-                    <br />
-                    Join to our community and enjoy reading. Many cathegories that you can discover. Thousands of books and even
-                    more reviews. Do not waste your time for books that are noth worth it. Search for reviews and save your time.
-                  </div>
-                  <img alt='intro' src={intro} style={{float: "right", height: "350px"}}/>
-                </div>
-            </QueueAnim>
-          </OverPack>
-          <OverPack style={{ overflow: 'hidden' }} playScale={0.4} >
+          <div key="b" style={{paddingLeft: "10%", paddingRight: "10%", display: "flex"}}>
+            <div style={{float: "left", fontSize: "larger", textAlign: "left", width: "60vw", margin: "5%"}} >
+              Book Review Platform was created to let all bookworms explor world of books. Thanks to our platform 
+              you can find interesting books, give your opinion about it or read reviews to make sure that book is
+              worth to be read.
+              <br />
+              <br />
+              Join to our community and enjoy reading. Many cathegories that you can discover. Thousands of books and even
+              more reviews. Do not waste your time for books that are noth worth it. Search for reviews and save your time.
+            </div>
+            <img alt='intro' src={intro} style={{float: "right", height: "350px"}}/>
+          </div>
+      </QueueAnim>
+    </OverPack>
+    );
+  }
+
+  socialmediaIcons = () => {
+    return ([
+      <FacebookOutlined style={{fontSize: "35px", margin: "10px"}}/>,
+      <TwitterOutlined style={{fontSize: "35px",  margin: "10px"}}/>,
+      <SkypeOutlined style={{fontSize: "35px",  margin: "10px"}}/>,
+      <InstagramOutlined style={{fontSize: "35px",  margin: "10px"}}/>
+    ]);
+  }
+
+  contactUsDiv = () => {
+    return (
+      <OverPack style={{ overflow: 'hidden' }} playScale={0.4} >
             <QueueAnim style={{backgroundColor: "#ffffff"}}>
                 <div key="a" style={{padding: "2%", fontWeight: "bold", fontSize: "x-large"}}>
                     Contact us
@@ -63,14 +84,20 @@ class MainView extends Component{
                     Email: xxx@email.com
                     <br />
                     <br />
-                    <FacebookOutlined style={{fontSize: "35px", margin: "10px"}}/>
-                    <TwitterOutlined style={{fontSize: "35px",  margin: "10px"}}/>
-                    <SkypeOutlined style={{fontSize: "35px",  margin: "10px"}}/>
-                    <InstagramOutlined style={{fontSize: "35px",  margin: "10px"}}/>
+                    <this.socialmediaIcons />
                   </div>
               </div>
             </QueueAnim>
           </OverPack>
+    );
+  }
+
+  render() {
+    return (
+      <div className="Main" >
+          <this.headerDiv />
+          <this.introDiv />
+          <this.contactUsDiv />
         <div style={{height: "40vh", backgroundColor: "#ffffff"}} />
       </div>
     );
