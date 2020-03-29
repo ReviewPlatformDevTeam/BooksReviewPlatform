@@ -1,6 +1,5 @@
 package com.uj.projects.booksplatform.user;
 
-import com.uj.projects.booksplatform.user.entity.LoginRequest;
 import com.uj.projects.booksplatform.user.resources.LoginResources;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
