@@ -28,9 +28,8 @@ public class UserController {
         if (loginRequest.getPassword().isEmpty()){
             throw new NullPointerException("Password cannot be empty");
         }
-        LoginResult result = loginService.Login(loginRequest.getUsername(), loginRequest.getPassword());
+        LoginResult result = loginService.Login(loginRequest.getUsername());
 
        return new LoginResponse(result.isSuccess(), result.getToken());
-
     }
 }

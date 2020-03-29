@@ -1,5 +1,6 @@
 package com.uj.projects.booksplatform;
 
+import com.uj.projects.booksplatform.user.JwtFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,40 +1,24 @@
 package com.uj.projects.booksplatform.user.service;
 
 import com.uj.projects.booksplatform.user.entity.LoginResult;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import com.uj.projects.booksplatform.user.resources.LoginResources;
+import com.uj.projects.booksplatform.user.wrappers.JwtBuilderWrapper;
 import org.springframework.stereotype.Service;
-
-import java.util.Base64;
-import java.util.Date;
 
 @Service
 public class JwtLoginService implements LoginService {
 
-    private static final int tokenLifetimeInMilliseconds = 20000;
+    private static final int tokenLifetimeInMinutes = 3600;
+    private JwtBuilderWrapper jwtBuilderWrapper;
+
+    public JwtLoginService(JwtBuilderWrapper jwtBuilderWrapper) {
+        this.jwtBuilderWrapper = jwtBuilderWrapper;
+    }
 
     @Override
-    public LoginResult Login(String username, String password) {
-
-        String encodedString = CreateEncodedString(password);
-        String token = CreateToken(username, encodedString);
+    public LoginResult Login(String username) {
+        String token = jwtBuilderWrapper.generateToken(username, tokenLifetimeInMinutes, "user", LoginResources.JWT_SECRET);
         return new LoginResult(true, token);
-    }
-
-    private static String CreateEncodedString(String textToEncode){
-       return Base64.getEncoder().encodeToString(textToEncode.getBytes());
-    }
-
-    private static String CreateToken(String username, String encodedString){
-        long currentTimeMillis = System.currentTimeMillis();
-
-        return Jwts.builder()
-                .setSubject(username)
-                .claim("roles","user")
-                .setIssuedAt(new Date(currentTimeMillis))
-                .setExpiration(new Date(currentTimeMillis + tokenLifetimeInMilliseconds))
-                .signWith(SignatureAlgorithm.HS512, encodedString)
-                .compact();
     }
 
 }

@@ -1,5 +1,7 @@
-package com.uj.projects.booksplatform;
+package com.uj.projects.booksplatform.user;
 
+import com.uj.projects.booksplatform.user.entity.LoginRequest;
+import com.uj.projects.booksplatform.user.resources.LoginResources;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureException;
@@ -25,7 +27,7 @@ public class JwtFilter implements javax.servlet.Filter {
         } else {
             try {
 
-                String encoded = Base64.getEncoder().encodeToString("dupa123".getBytes());
+                String encoded = Base64.getEncoder().encodeToString(LoginResources.JWT_SECRET);
                 String token = header.substring(7);
                 Claims claims = Jwts.parser().setSigningKey(encoded).parseClaimsJws(token).getBody();
                 servletRequest.setAttribute("claims", claims);
