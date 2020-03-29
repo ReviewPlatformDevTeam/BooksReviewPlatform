@@ -20,5 +20,4 @@ public class JwtLoginService implements LoginService {
         String token = jwtBuilderWrapper.generateToken(username, tokenLifetimeInMinutes, "user", LoginResources.JWT_SECRET);
         return new LoginResult(true, token);
     }
-
 }
