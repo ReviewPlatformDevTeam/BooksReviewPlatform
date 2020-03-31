@@ -23,10 +23,10 @@ public class UserController {
     public LoginResponse Login(@RequestBody LoginRequest loginRequest){
 
         if (loginRequest.getUsername().isEmpty()){
-            throw new NullPointerException("Username cannot be empty");
+            throw new IllegalArgumentException("Username cannot be empty");
         }
         if (loginRequest.getPassword().isEmpty()){
-            throw new NullPointerException("Password cannot be empty");
+            throw new IllegalArgumentException("Password cannot be empty");
         }
         LoginResult result = loginService.Login(loginRequest.getUsername());
 

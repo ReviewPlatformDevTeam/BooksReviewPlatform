@@ -7,13 +7,12 @@ import com.uj.projects.booksplatform.user.entity.LoginResult;
 import com.uj.projects.booksplatform.user.service.LoginService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.testng.Assert;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class UserControllerTest {
+class UserControllerTest {
 
     private LoginService loginService;
     private UserController userController;
@@ -25,7 +24,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void shouldCallLoginServiceAndReturnResultWhenProperUserNameAddPasswordAreProvided() {
+    void shouldCallLoginServiceAndReturnResultWhenProperUserNameAddPasswordAreProvided() {
         // Arrange
         String username = Any.string();
         String password = Any.string();
@@ -51,7 +50,7 @@ public class UserControllerTest {
         LoginRequest request = new LoginRequest("", password);
 
         // Act && Assert
-        assertThrows(NullPointerException.class, () -> { userController.Login(request);});
+        assertThrows(IllegalArgumentException.class, () -> { userController.Login(request);});
     }
 
     @Test()
@@ -61,6 +60,6 @@ public class UserControllerTest {
         LoginRequest request = new LoginRequest(username, "");
 
         // Act && Assert
-        assertThrows(NullPointerException.class, () -> { userController.Login(request);});
+        assertThrows(IllegalArgumentException.class, () -> { userController.Login(request);});
     }
 }
