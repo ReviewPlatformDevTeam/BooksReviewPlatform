@@ -6,6 +6,7 @@ import com.uj.projects.booksplatform.user.resources.LoginResources;
 import com.uj.projects.booksplatform.user.wrappers.JwtBuilderWrapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.testng.Assert;
 
 import static org.mockito.Mockito.*;

@@ -7,12 +7,13 @@ import com.uj.projects.booksplatform.user.entity.LoginResult;
 import com.uj.projects.booksplatform.user.service.LoginService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.testng.Assert;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class UserControllerTest {
+public class UserControllerTest {
 
     private LoginService loginService;
     private UserController userController;
@@ -24,7 +25,7 @@ class UserControllerTest {
     }
 
     @Test
-    void shouldCallLoginServiceAndReturnResultWhenProperUserNameAddPasswordAreProvided() {
+    public void shouldCallLoginServiceAndReturnResultWhenProperUserNameAddPasswordAreProvided() {
         // Arrange
         String username = Any.string();
         String password = Any.string();
