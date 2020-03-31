@@ -1,4 +1,4 @@
-package com.uj.projects.booksplatform.Entity;
+package com.uj.projects.booksplatform.book.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
