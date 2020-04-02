@@ -13,8 +13,15 @@ class Login extends Component {
             submitted: false, 
             redirect: false
         };
-        if(authService.authenticateUser() === null) { // If user already logged in, we redirect him to main page
-            this.setState({redirect: true});
+    }
+    
+    redirectToMainPage = () => {
+        this.setState({redirect: true});
+    }
+
+    componentDidMount() {
+        if(authService.isAuthenticated()) {
+            this.redirectToMainPage();
         }
     }
 
@@ -23,18 +30,23 @@ class Login extends Component {
 
         event.preventDefault();
         this.setState({ submitted: true });
+
         if (!(username && password)) return;
 
         const response = await authService.login(username, password);
         if(response.success) {
-            const user = { // object containing user authorisation data
+            const user = {
                 name: username,
                 token: response.token
             }
-            window.localStorage.setItem('user', JSON.stringify(user)); // user data kept in local storage under 'user' key
-            this.setState({redirect: true});
+            authService.authenticateUser(user);
+            this.redirectToMainPage();
         } else {
-            alert('Wrong credentials');
+            if(response.status === '404') {
+                alert('Page not found');
+            } else {
+                alert('Wrong credentials');
+            }
         }
         
     };
@@ -46,9 +58,11 @@ class Login extends Component {
 
     render() {
         const { username, password, submitted, redirect } = this.state;
+
         if(redirect) {
             return (<Redirect to='/main' />);
         }
+
         return (
             <div className="login">
                 <link
@@ -74,7 +88,7 @@ class Login extends Component {
                         <p
                             className={
                                 "error-message" +
-                                (submitted && !username ? " error-submit" : "") // if data field is empty, error message is displayed
+                                (submitted && !username ? " error-submit" : "")
                             }
                         >
                             This field is mandatory
@@ -95,7 +109,7 @@ class Login extends Component {
                         <p
                             className={
                                 "error-message" +
-                                (submitted && !password ? " error-submit" : "") // if data field is empty, error message is displayed
+                                (submitted && !password ? " error-submit" : "")
                             }
                         >
                             This field is mandatory
