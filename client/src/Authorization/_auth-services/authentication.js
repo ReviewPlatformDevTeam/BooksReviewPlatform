@@ -1,5 +1,14 @@
+const userKey = { key: 'user' };
+
+const checkStatus = (response) => {
+    if(!response.ok) {
+        throw Error(response.status);
+    }
+    return response;
+}
+
 const login = (username, password) => {
-    const url = "/login";
+    const url = "https://b818d995-4c2a-4c44-ba02-4b8d2e77ccfb.mock.pstmn.io/login/";
     const fetchData = {
         method: "POST",
         body: {
@@ -10,22 +19,25 @@ const login = (username, password) => {
         mode: "cors"
     };
 
-    return fetch(url, fetchData).then(response =>
-        response.json()
-    );
+    return fetch(url, fetchData)
+    .then(response => checkStatus(response))
+    .then(response => response.json())
+    .catch(error => {
+        return {success: false, status: error.message}
+    });
 };
 
 const logout = () => {
-    localStorage.removeItem('user');
+    localStorage.removeItem(userKey.key);
 }
 
-const authenticateUser = () => { // returns object {name, token} if user is authenticated, returns null if not authenticated
-    const userData = window.localStorage.getItem('user');
-    return userData !== null ? JSON.parse(userData) : null;
+const isAuthenticated = () => {
+    const userData = window.localStorage.getItem(userKey.key);
+    return userData ? JSON.parse(userData) : null;
 }
 
-// const authenticateUser = (user) => {
-//     window.localStorage.setItem('user', JSON.stringify(user)); // user is kept in localStorage under 'user' key
-// }
+const authenticateUser = (user) => {
+    window.localStorage.setItem(userKey.key, JSON.stringify(user));
+}
 
-export const authService = { login, logout, authenticateUser };
+export const authService = { login, logout, isAuthenticated, authenticateUser };
