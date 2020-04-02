@@ -8,7 +8,7 @@ const checkStatus = (response) => {
 }
 
 const login = (username, password) => {
-    const url = "https://b818d995-4c2a-4c44-ba02-4b8d2e77ccfb.mock.pstmn.io/login/";
+    const url = "/login";
     const fetchData = {
         method: "POST",
         body: {
