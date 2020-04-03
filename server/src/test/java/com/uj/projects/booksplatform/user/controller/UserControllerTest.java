@@ -1,10 +1,11 @@
 package com.uj.projects.booksplatform.user.controller;
 
 import autofixture.publicinterface.Any;
-import com.uj.projects.booksplatform.user.entity.LoginRequest;
-import com.uj.projects.booksplatform.user.entity.LoginResponse;
-import com.uj.projects.booksplatform.user.entity.LoginResult;
+import com.uj.projects.booksplatform.user.dto.LoginRequest;
+import com.uj.projects.booksplatform.user.dto.LoginResponse;
+import com.uj.projects.booksplatform.user.dto.LoginResult;
 import com.uj.projects.booksplatform.user.service.LoginService;
+import com.uj.projects.booksplatform.user.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testng.Assert;
@@ -16,11 +17,13 @@ class UserControllerTest {
 
     private LoginService loginService;
     private UserController userController;
+    private UserService userService;
 
     @BeforeEach
     void SetUp(){
         loginService = mock(LoginService.class);
-        userController = new UserController(loginService);
+        userService = mock(UserService.class);
+        userController = new UserController(loginService, userService);
     }
 
     @Test
