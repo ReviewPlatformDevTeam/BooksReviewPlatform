@@ -60,7 +60,7 @@ class Login extends Component {
         const { username, password, submitted, redirect } = this.state;
 
         if(redirect) {
-            return (<Redirect to='/main' />);
+            return (<Redirect to='/signedin' />);
         }
 
         return (
@@ -118,7 +118,7 @@ class Login extends Component {
 
                     <button type="submit">Sign In</button>
                 </form>
-                <a href="#">Forgot password?</a>
+                <a href="/login">Forgot password?</a>
             </div>
         );
     }

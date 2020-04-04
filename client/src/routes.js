@@ -10,6 +10,7 @@ const BaseRouter = () => (
        <Route path="/main" component={MainView} />
        <Route path="/login" component={LoginView} />
        <Route path="/register" component={RegistrationView} />
+       <Route path="/signedin" />
    </div>
 );
 
