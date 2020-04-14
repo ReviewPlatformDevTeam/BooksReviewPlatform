@@ -1,8 +1,6 @@
 package com.uj.projects.booksplatform.user.controller;
 
-import com.uj.projects.booksplatform.user.entity.LoginRequest;
-import com.uj.projects.booksplatform.user.entity.LoginResponse;
-import com.uj.projects.booksplatform.user.entity.LoginResult;
+import com.uj.projects.booksplatform.user.entity.*;
 import com.uj.projects.booksplatform.user.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,5 +29,10 @@ public class UserController {
         LoginResult result = loginService.Login(loginRequest.getUsername());
 
        return new LoginResponse(result.isSuccess(), result.getToken());
+    }
+
+    @PostMapping("/resetPassword")
+    public PasswordResetResponse ResetPassword(@RequestBody PasswordResetRequest request){
+        return new PasswordResetResponse(true, "");
     }
 }
