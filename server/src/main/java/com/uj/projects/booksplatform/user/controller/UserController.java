@@ -1,8 +1,11 @@
 package com.uj.projects.booksplatform.user.controller;
 
+
 import com.uj.projects.booksplatform.user.dto.LoginRequest;
 import com.uj.projects.booksplatform.user.dto.LoginResponse;
 import com.uj.projects.booksplatform.user.dto.LoginResult;
+
+
 import com.uj.projects.booksplatform.user.entity.*;
 import com.uj.projects.booksplatform.user.service.LoginService;
 import com.uj.projects.booksplatform.user.service.UserService;
@@ -30,9 +33,16 @@ public class UserController {
        return new LoginResponse(result.isSuccess(), result.getToken());
     }
 
+
     @PostMapping("/users")
     public User registerUser(@Valid @RequestBody User user){
         return userService.createUser(user);
+    }
+
+
+    @PostMapping("/resetPassword")
+    public PasswordResetResponse ResetPassword(@RequestBody PasswordResetRequest request){
+        return new PasswordResetResponse(true, "");
     }
 
 }

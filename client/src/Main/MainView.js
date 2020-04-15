@@ -59,16 +59,16 @@ class MainView extends Component{
 
   socialmediaIcons = () => {
     return ([
-      <FacebookOutlined style={{fontSize: "35px", margin: "10px"}}/>,
-      <TwitterOutlined style={{fontSize: "35px",  margin: "10px"}}/>,
-      <SkypeOutlined style={{fontSize: "35px",  margin: "10px"}}/>,
-      <InstagramOutlined style={{fontSize: "35px",  margin: "10px"}}/>
+      <FacebookOutlined key={1} style={{fontSize: "35px", margin: "10px"}}/>,
+      <TwitterOutlined key={2} style={{fontSize: "35px",  margin: "10px"}}/>,
+      <SkypeOutlined key={3} style={{fontSize: "35px",  margin: "10px"}}/>,
+      <InstagramOutlined key={4} style={{fontSize: "35px",  margin: "10px"}}/>
     ]);
   }
 
   contactUsDiv = () => {
     return (
-      <OverPack style={{ overflow: 'hidden' }} playScale={0.4} >
+      <OverPack style={{ overflow: 'hidden' }} playScale={0.1} >
             <QueueAnim style={{backgroundColor: "#ffffff"}}>
                 <div key="a" style={{padding: "2%", fontWeight: "bold", fontSize: "x-large"}}>
                     Contact us

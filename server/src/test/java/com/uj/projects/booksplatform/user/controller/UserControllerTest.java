@@ -1,10 +1,14 @@
 package com.uj.projects.booksplatform.user.controller;
 
 import autofixture.publicinterface.Any;
+
 import com.uj.projects.booksplatform.user.dto.LoginRequest;
 import com.uj.projects.booksplatform.user.dto.LoginResponse;
 import com.uj.projects.booksplatform.user.dto.LoginResult;
 import com.uj.projects.booksplatform.user.entity.User;
+
+import com.uj.projects.booksplatform.user.entity.*;
+
 import com.uj.projects.booksplatform.user.service.LoginService;
 import com.uj.projects.booksplatform.user.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
@@ -85,5 +89,18 @@ class UserControllerTest {
 
         // Act && Assert
         assertThrows(IllegalArgumentException.class, () -> { userController.Login(request);});
+    }
+
+    @Test()
+    void shouldReturnSuccessDuringPassWordReset(){
+        // Arrange
+        PasswordResetRequest request = Any.instanceOf(PasswordResetRequest.class);
+
+        // Act
+        PasswordResetResponse response = userController.ResetPassword(request);
+
+        // Assert
+        Assert.assertTrue(response.isSuccess());
+        Assert.assertEquals(response.getErrorMessage(), "");
     }
 }
