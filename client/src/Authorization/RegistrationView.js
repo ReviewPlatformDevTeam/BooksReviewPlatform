@@ -34,11 +34,9 @@ class RegistrationView extends Component {
     handleEmailChange(event) {
         this.setState({email: event.target.value})
     }
-
     handleUsernameChange(event) {
         this.setState({username: event.target.value})
     }
-
     handlePasswordChange(event) {
         this.setState({password: event.target.value})
     }
@@ -84,7 +82,6 @@ class RegistrationView extends Component {
     );
     }
 }
-
 export default RegistrationView;
 
 
