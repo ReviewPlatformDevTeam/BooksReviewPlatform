@@ -4,25 +4,23 @@ import autofixture.publicinterface.Any;
 import com.uj.projects.booksplatform.error.exception.DefaultRuntimeException;
 import com.uj.projects.booksplatform.user.entity.User;
 import com.uj.projects.booksplatform.user.repository.UserRepository;
+import com.uj.projects.booksplatform.user.validator.UserValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 
-public class UserServiceImplTest {
+public class UserValidatorTest {
 
-    private UserServiceImpl userService;
     private UserRepository userRepository;
-    private PasswordEncoder passwordEncoder;
+    private UserValidator userValidator;
 
     @BeforeEach
     void setUp(){
         userRepository = mock(UserRepository.class);
-        passwordEncoder = mock(PasswordEncoder.class);
-        userService = new UserServiceImpl(userRepository, passwordEncoder);
+        userValidator = new UserValidator(userRepository);
     }
 
     @Test
@@ -34,7 +32,7 @@ public class UserServiceImplTest {
         given(userRepository.findUserByUsername(username)).willReturn(user);
 
         // Act && Assert
-        assertThrows(DefaultRuntimeException.class, () -> { userService.validateIfUserAlreadyRegistered(username, email);});
+        assertThrows(DefaultRuntimeException.class, () -> { userValidator.validateIfUserAlreadyRegistered(username, email);});
     }
 
     @Test
@@ -46,6 +44,6 @@ public class UserServiceImplTest {
         given(userRepository.findUserByEmail(email)).willReturn(user);
 
         // Act && Assert
-        assertThrows(DefaultRuntimeException.class, () -> { userService.validateIfUserAlreadyRegistered(username, email);});
+        assertThrows(DefaultRuntimeException.class, () -> { userValidator.validateIfUserAlreadyRegistered(username, email);});
     }
 }

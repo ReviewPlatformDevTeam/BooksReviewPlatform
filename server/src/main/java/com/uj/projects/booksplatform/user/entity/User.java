@@ -20,18 +20,18 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank(message = "Nazwa użytkownika nie może być pusta")
-    @Size(min = 5, message = "Nazwa użytkownika musi mieć co najmniej 5 znaków")
+    @NotBlank(message = "Username cannot be empty")
+    @Size(min = 5, message = "Username must be at least 5 characters")
     @Column(name = "username")
     private String username;
 
-    @NotBlank(message = "Hasło nie może być puste")
-    @Size(min = 5, message = "Hasło musi mieć co najmniej 5 znaków")
+    @NotBlank(message = "Password cannot be empty")
+    @Size(min = 5, message = "Password must be at least 5 characters")
     @Column(name = "password")
     private String password;
 
-    @NotBlank(message = "Nazwa użytkownika nie może być pusta")
-    @Email(message = "Niepoprawny format adresu e-mail")
+    @NotBlank(message = "Email cannot be empty")
+    @Email(message = "Invalid email address format")
     @Column(name = "email")
     private String email;
 

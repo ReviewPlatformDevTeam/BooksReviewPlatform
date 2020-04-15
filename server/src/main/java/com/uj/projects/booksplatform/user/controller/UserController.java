@@ -32,7 +32,6 @@ public class UserController {
 
     @PostMapping("/users")
     public User registerUser(@Valid @RequestBody User user){
-        userService.validateIfUserAlreadyRegistered(user.getUsername(), user.getEmail());
         return userService.createUser(user);
     }
 
