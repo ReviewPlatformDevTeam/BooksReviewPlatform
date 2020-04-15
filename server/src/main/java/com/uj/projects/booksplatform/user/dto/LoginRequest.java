@@ -12,8 +12,8 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LoginRequest {
-    @NotBlank(message = "Nazwa użytkownika nie może być pusta")
+    @NotBlank(message = "Username cannot be empty")
     private String username;
-    @NotBlank(message = "Hasło nie może być puste")
+    @NotBlank(message = "Password cannot be empty")
     private String password;
 }
