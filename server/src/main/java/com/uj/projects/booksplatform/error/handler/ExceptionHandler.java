@@ -1,6 +1,7 @@
 package com.uj.projects.booksplatform.error.handler;
 
 import com.uj.projects.booksplatform.error.dto.ErrorResponse;
+import com.uj.projects.booksplatform.error.exception.DefaultRuntimeException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -25,5 +26,11 @@ public class ExceptionHandler {
             errors.put(fieldName, errorMessage);
         });
         return new ErrorResponse(errors);
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @org.springframework.web.bind.annotation.ExceptionHandler(DefaultRuntimeException.class)
+    public ErrorResponse handleValidationExceptions(DefaultRuntimeException ex) {
+        return new ErrorResponse(ex.getErrors());
     }
 }

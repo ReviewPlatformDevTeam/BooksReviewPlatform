@@ -10,5 +10,6 @@ public interface UserService {
     User createUser(User user);
     void deleteUser(Integer id);
     User updateUser(User user);
+    void validateIfUserAlreadyRegistered(String username, String email);
 
 }
