@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './RegistrationView.css';
+import { Redirect } from "react-router-dom";
 
 const axios = require('axios');
 
@@ -9,7 +10,8 @@ class RegistrationView extends Component {
         this.state = {
             username: '',
             email: '',
-            password: ''
+            password: '',
+            redirect: false
         };
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -17,8 +19,14 @@ class RegistrationView extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    redirectToMainPage = () => {
+        this.setState({redirect: true});
+    }
+
     handleSubmit(event){
         event.preventDefault();
+            alert(`Welcome, ${this.state.username}!`);
+
 
         let addUser = {
             username: this.state.username,
@@ -26,16 +34,20 @@ class RegistrationView extends Component {
             password: this.state.password
         };
 
+        const checkStatus = (response) => {
+            if(!response.ok) {
+                throw Error(response.status);
+            }
+            return response;
+        };
+
         axios.post('/users', addUser )
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
+            .then(response => checkStatus(response))
+            .then(response => response.json())
+            .catch(error => {
+                return {success: false, status: error.message}
             });
     };
-
-
 
     handleEmailChange(event) {
         this.setState({email: event.target.value})
@@ -49,8 +61,14 @@ class RegistrationView extends Component {
 
 
     render() {
+        const { username, email, password, redirect } = this.state;
+
+        if(redirect) {
+            return (<Redirect to='/signedup' />);
+        }
+
         return (
-            <div className={RegistrationView}>
+            <div className="RegistrationView">
             <div className='Fon'>
             <div className="RegContainer">
             <h1>Registration</h1>

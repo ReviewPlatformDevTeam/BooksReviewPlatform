@@ -11,6 +11,7 @@ const BaseRouter = () => (
        <Route path="/login" component={LoginView} />
        <Route path="/register" component={RegistrationView} />
        <Route path="/signedin" />
+       <Route path="/signedup" />
    </div>
 );
 
