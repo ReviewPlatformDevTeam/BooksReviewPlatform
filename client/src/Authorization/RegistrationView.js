@@ -21,15 +21,21 @@ class RegistrationView extends Component {
         event.preventDefault();
 
         let addUser = {
-            username: this.state.login,
+            username: this.state.username,
             email: this.state.email,
             password: this.state.password
         };
 
         axios.post('/users', addUser )
-            .then(result => console.log('success:', result))
-            .catch(error => console.log('error:', error));
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     };
+
+
 
     handleEmailChange(event) {
         this.setState({email: event.target.value})
