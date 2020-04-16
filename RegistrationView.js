@@ -91,8 +91,8 @@ class RegistrationView extends Component {
         required
         />
         <input
-        type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
-        title="Your password must be at least 6 characters as well as contain at least one uppercase, one lowercase, and one number."
+        type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}"
+        title="Your password must be at least 5 characters as well as contain at least one uppercase, one lowercase, and one number."
         placeholder="Password"
         value={this.state.password}
         onChange={this.handlePasswordChange}
