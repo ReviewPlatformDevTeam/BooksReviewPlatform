@@ -8,6 +8,7 @@ import com.uj.projects.booksplatform.user.dto.LoginResult;
 
 import com.uj.projects.booksplatform.user.entity.*;
 import com.uj.projects.booksplatform.user.service.LoginService;
+import com.uj.projects.booksplatform.user.service.PasswordResetService;
 import com.uj.projects.booksplatform.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,11 +21,13 @@ public class UserController {
 
     private final LoginService loginService;
     private final UserService userService;
+    private final PasswordResetService passwordResetService;
 
     @Autowired
-    public UserController(LoginService loginService, UserService userService) {
+    public UserController(LoginService loginService, UserService userService, PasswordResetService passwordResetService) {
         this.loginService = loginService;
         this.userService = userService;
+        this.passwordResetService = passwordResetService;
     }
 
     @PostMapping("/login")
@@ -41,8 +44,9 @@ public class UserController {
 
 
     @PostMapping("/resetPassword")
-    public PasswordResetResponse ResetPassword(@RequestBody PasswordResetRequest request){
-        return new PasswordResetResponse(true, "");
+    public PasswordResetResponse ResetPassword(@Valid@RequestBody PasswordResetRequest request){
+        boolean passwordResetResult = passwordResetService.resetPassword(request.getEmail());
+        return new PasswordResetResponse(passwordResetResult);
     }
 
 }

@@ -1,6 +1,5 @@
 package com.uj.projects.booksplatform.user.service;
 
-import com.uj.projects.booksplatform.error.exception.DefaultRuntimeException;
 import com.uj.projects.booksplatform.user.entity.User;
 import com.uj.projects.booksplatform.user.repository.UserRepository;
 import com.uj.projects.booksplatform.user.validator.UserValidator;
@@ -49,5 +48,15 @@ public class UserServiceImpl implements UserService {
     public User updateUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
+    }
+
+    @Override
+    public User getUserByEmail(String email) {
+        return userRepository.findUserByEmail(email);
+    }
+
+    @Override
+    public User getUserByUsername(String username) {
+        return userRepository.findUserByUsername(username);
     }
 }
