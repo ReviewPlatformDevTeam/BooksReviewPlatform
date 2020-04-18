@@ -3,6 +3,8 @@ import './RegistrationView.css';
 import { Redirect } from "react-router-dom";
 import axios from 'axios';
 
+const axios = require('axios');
+
 class RegistrationView extends Component {
     constructor(props) {
         super(props);
