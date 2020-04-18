@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './RegistrationView.css';
 import { Redirect } from "react-router-dom";
-
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 const axios = require('axios');
 
 class RegistrationView extends Component {
