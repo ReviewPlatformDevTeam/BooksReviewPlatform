@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import './RegistrationView.css';
 import { Redirect } from "react-router-dom";
-import axios from 'axios'
-
-const axios = require('axios');
+import axios from 'axios';
 
 class RegistrationView extends Component {
     constructor(props) {
