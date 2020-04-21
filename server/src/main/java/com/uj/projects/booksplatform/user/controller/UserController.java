@@ -1,35 +1,48 @@
 package com.uj.projects.booksplatform.user.controller;
 
-import com.uj.projects.booksplatform.user.entity.LoginRequest;
-import com.uj.projects.booksplatform.user.entity.LoginResponse;
-import com.uj.projects.booksplatform.user.entity.LoginResult;
-import com.uj.projects.booksplatform.user.service.LoginService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController()
+import com.uj.projects.booksplatform.user.dto.LoginRequest;
+import com.uj.projects.booksplatform.user.dto.LoginResponse;
+import com.uj.projects.booksplatform.user.dto.LoginResult;
+
+
+import com.uj.projects.booksplatform.user.entity.*;
+import com.uj.projects.booksplatform.user.service.LoginService;
+import com.uj.projects.booksplatform.user.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+
+
+@RestController
 public class UserController {
 
-    private LoginService loginService;
+    private final LoginService loginService;
+    private final UserService userService;
 
     @Autowired
-    public UserController(LoginService loginService) {
+    public UserController(LoginService loginService, UserService userService) {
         this.loginService = loginService;
+        this.userService = userService;
     }
 
     @PostMapping("/login")
-    public LoginResponse Login(@RequestBody LoginRequest loginRequest){
-
-        if (loginRequest.getUsername().isEmpty()){
-            throw new IllegalArgumentException("Username cannot be empty");
-        }
-        if (loginRequest.getPassword().isEmpty()){
-            throw new IllegalArgumentException("Password cannot be empty");
-        }
+    public LoginResponse Login(@Valid@RequestBody LoginRequest loginRequest){
         LoginResult result = loginService.Login(loginRequest.getUsername());
-
        return new LoginResponse(result.isSuccess(), result.getToken());
     }
+
+
+    @PostMapping("/users")
+    public User registerUser(@Valid @RequestBody User user){
+        return userService.createUser(user);
+    }
+
+
+    @PostMapping("/resetPassword")
+    public PasswordResetResponse ResetPassword(@RequestBody PasswordResetRequest request){
+        return new PasswordResetResponse(true, "");
+    }
+
 }

@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class LoginResult {
-    private boolean Success;
-    private String token;
+public class PasswordResetResponse {
+    private boolean success;
+    private String errorMessage;
 }

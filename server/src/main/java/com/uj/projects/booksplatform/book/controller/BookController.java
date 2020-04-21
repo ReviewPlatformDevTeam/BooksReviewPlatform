@@ -1,6 +1,6 @@
 package com.uj.projects.booksplatform.book.controller;
 
-import com.uj.projects.booksplatform.book.Entity.Book;
+import com.uj.projects.booksplatform.book.entity.Book;
 import com.uj.projects.booksplatform.book.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -9,7 +9,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginResponse {
-    private boolean success;
-    private String token;
+public class PasswordResetRequest {
+    private String email;
 }

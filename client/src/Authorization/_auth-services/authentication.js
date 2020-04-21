@@ -15,8 +15,9 @@ const login = (username, password) => {
             username: username,
             password: password
         },
-        headers: new Headers(),
-        mode: "cors"
+        headers: {
+            "Content-type": "application/json"
+        }
     };
 
     return fetch(url, fetchData)
