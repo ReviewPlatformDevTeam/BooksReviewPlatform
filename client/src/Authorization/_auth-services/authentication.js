@@ -20,7 +20,13 @@ const login = (username, password) => {
         headers: {
             "Content-type": "application/json"
         },
+<<<<<<< HEAD
         body: JSON.stringify(loginBody)
+=======
+        headers: {
+            "Content-type": "application/json"
+        }
+>>>>>>> ebb46cfd4a785b12aa48e3257d4ebb17fa9c705d
     };
 
     return fetch(url, fetchData)
