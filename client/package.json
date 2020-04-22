@@ -8,6 +8,7 @@
     "@testing-library/react": "^10.0.1",
     "@testing-library/user-event": "^10.0.0",
     "antd": "^4.0.4",
+    "axios": "^0.19.2",
     "enquire-js": "^0.2.1",
     "rc-queue-anim": "^1.8.4",
     "rc-scroll-anim": "^2.7.4",
