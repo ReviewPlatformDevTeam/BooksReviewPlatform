@@ -8,7 +8,7 @@ const checkStatus = (response) => {
 }
 
 const login = (username, password) => {
-    const url = "/login";
+    const url = "http://localhost:8080/login";
     const loginBody = {
         username: username,
         password: password

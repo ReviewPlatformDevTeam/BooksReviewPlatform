@@ -7,10 +7,6 @@ import logo from '../pictures/Common_logo.png';
 const { Header, Content } = Layout;
 
 class CustomLayout extends React.Component{
-    
-    componentDidMount() {
-        this.props.history.push('/main');
-    }
 
     render(){
         return (
@@ -18,7 +14,7 @@ class CustomLayout extends React.Component{
             <Header style={{ position: 'fixed', zIndex: 1, width: '100%', background: '#ffffff' }}>
             <div style={{color: "black", float: "left", width: "200px"}}>
                 <img src={logo} alt='logo'/>
-                <Link style={{color: "black"}} to="/main">  Book Review Platform </Link>
+                <Link style={{color: "black"}} to="/">  Book Review Platform </Link>
             </div>
             <Menu
                 theme="light"
