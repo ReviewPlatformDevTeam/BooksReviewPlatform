@@ -61,9 +61,8 @@ class RegistrationView extends Component {
 
 
     render() {
-        const { username, email, password, redirect } = this.state;
 
-        if(redirect) {
+        if(this.state.redirect) {
             return (<Redirect to='/signedup' />);
         }
 
