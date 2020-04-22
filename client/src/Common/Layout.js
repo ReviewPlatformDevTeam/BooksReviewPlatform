@@ -25,7 +25,7 @@ class CustomLayout extends React.Component{
                 mode="horizontal"
                 style={{lineHeight: '64px',}} >
                 <Menu.Item
-                    key="register"
+                    key="register" 
                     style={{float: 'right'}}>
                     <Link to="/register">Sign up</Link>
                 </Menu.Item>
