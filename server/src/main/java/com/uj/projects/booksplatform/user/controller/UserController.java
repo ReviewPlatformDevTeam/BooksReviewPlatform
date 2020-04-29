@@ -40,8 +40,8 @@ public class UserController {
     }
 
 
-    @PostMapping("/resetPassword")
-    public PasswordResetResponse ResetPassword(@RequestBody PasswordResetRequest request){
+    @PostMapping(path = "/resetPassword", consumes = "application/x-www-form-urlencoded")
+    public PasswordResetResponse ResetPassword(PasswordResetRequest request){
         return new PasswordResetResponse(true, "");
     }
 

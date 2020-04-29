@@ -118,7 +118,7 @@ class Login extends Component {
 
                     <button type="submit">Sign In</button>
                 </form>
-                <a href="/login">Forgot password?</a>
+                <a href="/resetPassword">Forgot password?</a>
             </div>
         );
     }
