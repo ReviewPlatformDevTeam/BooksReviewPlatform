@@ -27,12 +27,12 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/login")
-    public LoginResponse Login(@Valid@RequestBody LoginRequest loginRequest){
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public LoginResponse Login(LoginRequest loginRequest){
         LoginResult result = loginService.Login(loginRequest.getUsername());
        return new LoginResponse(result.isSuccess(), result.getToken());
     }
-
 
     @PostMapping("/users")
     public User registerUser(@Valid @RequestBody User user){

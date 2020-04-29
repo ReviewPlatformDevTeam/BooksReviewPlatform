@@ -1,6 +1,8 @@
 const userKey = { key: 'user' };
 
 const checkStatus = (response) => {
+
+    console.log(response);
     if(!response.ok) {
         throw Error(response.status);
     }
@@ -8,7 +10,7 @@ const checkStatus = (response) => {
 }
 
 const login = (username, password) => {
-    const url = "/login";
+    const url = "http://localhost:8080/login";
     const loginBody = {
         username: username,
         password: password
@@ -18,7 +20,7 @@ const login = (username, password) => {
         method: "POST",
         mode: 'cors',
         headers: {
-            "Content-type": "application/json"
+            "Content-type": "application/x-www-form-urlencoded"
         },
         body: JSON.stringify(loginBody)
     };
