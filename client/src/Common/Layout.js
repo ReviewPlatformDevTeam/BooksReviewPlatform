@@ -3,6 +3,7 @@ import { Layout, Menu } from 'antd';
 import { Link, withRouter } from 'react-router-dom';
 import logo from '../pictures/Common_logo.png';
 import { HomeOutlined, UserOutlined, RiseOutlined } from '@ant-design/icons';
+import { authService } from "../Authorization/_auth-services/authentication";
 
 
 const { Header, Content } = Layout;
@@ -72,6 +73,7 @@ class CustomLayout extends React.Component{
                 </Menu.Item>
                 <Menu.Item
                     key="signout"
+                    onClick={() => {authService.logout()}}
                     style={{float: 'right'}}>
                     <Link to="/signedout">Sign out</Link>
                 </Menu.Item>
@@ -86,7 +88,6 @@ class CustomLayout extends React.Component{
 
     render(){
         this.setMenu();
-        console.log(this.iconPath);
         return (
         <Layout className="layout">
             <Header style={{ position: 'fixed', zIndex: 1, width: '100%', background: '#ffffff' }}>
