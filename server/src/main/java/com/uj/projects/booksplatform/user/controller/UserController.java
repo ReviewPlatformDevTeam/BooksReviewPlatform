@@ -38,9 +38,10 @@ public class UserController {
     public User registerUser(@Valid @RequestBody User user){
         return userService.createUser(user);
     }
-    
-    @PostMapping("/resetPassword")
-    public PasswordResetResponse ResetPassword(@RequestBody PasswordResetRequest request){
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
+    public PasswordResetResponse ResetPassword(PasswordResetRequest request){
         return new PasswordResetResponse(true, "");
     }
 
