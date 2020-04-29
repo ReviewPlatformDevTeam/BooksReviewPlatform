@@ -1,7 +1,6 @@
 const userKey = { key: 'user' };
 
 const checkStatus = (response) => {
-    
     if(!response.ok) {
         throw Error(response.status);
     }
@@ -9,7 +8,7 @@ const checkStatus = (response) => {
 }
 
 const login = (username, password) => {
-    const url = "http://localhost:8080/login";
+    const url = "/login";
     const loginBody = {
         username: username,
         password: password

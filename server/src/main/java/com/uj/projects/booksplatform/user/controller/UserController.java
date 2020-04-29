@@ -38,8 +38,7 @@ public class UserController {
     public User registerUser(@Valid @RequestBody User user){
         return userService.createUser(user);
     }
-
-
+    
     @PostMapping("/resetPassword")
     public PasswordResetResponse ResetPassword(@RequestBody PasswordResetRequest request){
         return new PasswordResetResponse(true, "");
