@@ -1,8 +1,7 @@
 const userKey = { key: 'user' };
 
 const checkStatus = (response) => {
-
-    console.log(response);
+    
     if(!response.ok) {
         throw Error(response.status);
     }
