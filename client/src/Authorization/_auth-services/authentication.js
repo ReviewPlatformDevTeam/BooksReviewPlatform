@@ -19,7 +19,7 @@ const login = (username, password) => {
         method: "POST",
         mode: 'cors',
         headers: {
-            "Content-type": "application/json"
+            "Content-type": "application/x-www-form-urlencoded"
         },
         body: JSON.stringify(loginBody)
     };
