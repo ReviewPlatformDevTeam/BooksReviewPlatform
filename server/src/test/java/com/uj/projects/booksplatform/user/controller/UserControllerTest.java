@@ -10,6 +10,7 @@ import com.uj.projects.booksplatform.user.entity.User;
 import com.uj.projects.booksplatform.user.entity.*;
 
 import com.uj.projects.booksplatform.user.service.LoginService;
+import com.uj.projects.booksplatform.user.service.PasswordResetService;
 import com.uj.projects.booksplatform.user.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,12 +25,14 @@ class UserControllerTest {
     private LoginService loginService;
     private UserController userController;
     private UserService userService;
+    private PasswordResetService passwordResetService;
+
 
     @BeforeEach
     void SetUp(){
         loginService = mock(LoginService.class);
         userService = mock(UserService.class);
-        userController = new UserController(loginService, userService);
+        userController = new UserController(loginService, userService, passwordResetService);
     }
 
     @Test
