@@ -24,7 +24,6 @@ public class UserServiceImpl implements UserService {
         this.userValidator = userValidator;
     }
 
-
     @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -49,5 +48,17 @@ public class UserServiceImpl implements UserService {
     public User updateUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
+    }
+
+    @Override
+    public String resetPassword(String email) throws UserNotFoundException {
+        User user = userRepository.findUserByEmail(email);
+        if (user == null){
+            throw new UserNotFoundException();
+        }
+        String newPassword = "12345678";
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
+        return newPassword;
     }
 }

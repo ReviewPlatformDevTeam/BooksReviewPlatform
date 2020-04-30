@@ -8,14 +8,22 @@ import org.springframework.stereotype.Service;
 public class PasswordResetServiceImpl implements PasswordResetService {
 
     private EmailSender emailSender;
+    private UserService userService;
 
     @Autowired
-    public PasswordResetServiceImpl(EmailSender emailSender) {
+    public PasswordResetServiceImpl(EmailSender emailSender, UserService userService) {
         this.emailSender = emailSender;
+        this.userService = userService;
     }
 
     @Override
     public void resetPassword(String email) {
-        emailSender.SendEmail("no-reply@booksreviewplatform.pl", email, "Password reset", "Your new pass:" );
+        String newPassword = null;
+        try {
+            newPassword = userService.resetPassword(email);
+        } catch (UserNotFoundException e) {
+            System.out.printf("Could not find user with email: " + email);
+        }
+        emailSender.SendEmail("no-reply@booksreviewplatform.pl", email, "Password reset for Books Review Platform", "Your new pass: " + newPassword );
     }
 }
