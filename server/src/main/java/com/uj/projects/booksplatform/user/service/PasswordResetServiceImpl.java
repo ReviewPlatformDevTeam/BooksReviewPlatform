@@ -18,7 +18,7 @@ public class PasswordResetServiceImpl implements PasswordResetService {
 
     @Override
     public void resetPassword(String email) throws UserNotFoundException {
-        String newPassword = null;
+        String newPassword;
         try {
             newPassword = userService.resetPassword(email);
         } catch (UserNotFoundException e) {
