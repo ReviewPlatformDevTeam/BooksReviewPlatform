@@ -17,12 +17,13 @@ public class PasswordResetServiceImpl implements PasswordResetService {
     }
 
     @Override
-    public void resetPassword(String email) {
+    public void resetPassword(String email) throws UserNotFoundException {
         String newPassword = null;
         try {
             newPassword = userService.resetPassword(email);
         } catch (UserNotFoundException e) {
             System.out.printf("Could not find user with email: " + email);
+            throw e;
         }
         emailSender.SendEmail("no-reply@booksreviewplatform.pl", email, "Password reset for Books Review Platform", "Your new pass: " + newPassword );
     }

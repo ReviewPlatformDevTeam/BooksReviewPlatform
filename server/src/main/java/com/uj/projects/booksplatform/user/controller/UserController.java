@@ -1,6 +1,7 @@
 package com.uj.projects.booksplatform.user.controller;
 
 
+import com.uj.projects.booksplatform.error.dto.ErrorResponse;
 import com.uj.projects.booksplatform.user.dto.LoginRequest;
 import com.uj.projects.booksplatform.user.dto.LoginResponse;
 import com.uj.projects.booksplatform.user.dto.LoginResult;
@@ -9,6 +10,7 @@ import com.uj.projects.booksplatform.user.dto.LoginResult;
 import com.uj.projects.booksplatform.user.entity.*;
 import com.uj.projects.booksplatform.user.service.LoginService;
 import com.uj.projects.booksplatform.user.service.PasswordResetService;
+import com.uj.projects.booksplatform.user.service.UserNotFoundException;
 import com.uj.projects.booksplatform.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -45,7 +47,11 @@ public class UserController {
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
     public PasswordResetResponse ResetPassword(PasswordResetRequest request){
-        passwordResetService.resetPassword(request.getEmail());
+        try {
+            passwordResetService.resetPassword(request.getEmail());
+        } catch (Exception | UserNotFoundException e) {
+            return new PasswordResetResponse(false, e.getMessage());
+        }
         return new PasswordResetResponse(true, "");
     }
 
