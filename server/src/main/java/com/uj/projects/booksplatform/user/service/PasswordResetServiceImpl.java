@@ -22,7 +22,7 @@ public class PasswordResetServiceImpl implements PasswordResetService {
         try {
             newPassword = userService.resetPassword(email);
         } catch (UserNotFoundException e) {
-            System.out.printf("Could not find user with email: " + email);
+            System.out.print("Could not find user with email: " + email);
             throw e;
         }
         emailSender.SendEmail("no-reply@booksreviewplatform.pl", email, "Password reset for Books Review Platform", "Your new pass: " + newPassword );

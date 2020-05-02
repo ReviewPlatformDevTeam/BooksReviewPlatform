@@ -1,6 +1,5 @@
 package com.uj.projects.booksplatform.user.service;
 
-import com.uj.projects.booksplatform.error.exception.DefaultRuntimeException;
 import com.uj.projects.booksplatform.user.entity.User;
 import com.uj.projects.booksplatform.user.repository.UserRepository;
 import com.uj.projects.booksplatform.user.validator.UserValidator;
@@ -16,12 +15,14 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
     private UserValidator userValidator;
+    private RandomPasswordGenerator randomPasswordGenerator;
 
     @Autowired
-    UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, UserValidator userValidator){
+    UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, UserValidator userValidator, RandomPasswordGenerator randomPasswordGenerator){
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.userValidator = userValidator;
+        this.randomPasswordGenerator = randomPasswordGenerator;
     }
 
     @Override
@@ -56,7 +57,7 @@ public class UserServiceImpl implements UserService {
         if (user == null){
             throw new UserNotFoundException();
         }
-        String newPassword = "12345678";
+        String newPassword = randomPasswordGenerator.generate();
         user.setPassword(passwordEncoder.encode(newPassword));
         userRepository.save(user);
         return newPassword;
