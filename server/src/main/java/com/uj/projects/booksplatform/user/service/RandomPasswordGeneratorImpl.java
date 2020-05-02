@@ -1,9 +1,11 @@
 package com.uj.projects.booksplatform.user.service;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.stereotype.Component;
 
 import java.security.SecureRandom;
 
+@Component
 public class RandomPasswordGeneratorImpl implements RandomPasswordGenerator {
 
     private final static int defaultPasswordLength = 8;
