@@ -2,7 +2,6 @@ package com.uj.projects.booksplatform.user.service.email;
 
 import com.sendgrid.Method;
 import com.sendgrid.Request;
-import com.sendgrid.Response;
 import com.sendgrid.SendGrid;
 import com.sendgrid.helpers.mail.Mail;
 import com.sendgrid.helpers.mail.objects.Content;
@@ -27,17 +26,13 @@ public class SendgridEmailSender implements EmailSender {
         Dotenv dotenv = Dotenv.load();
         String sendGridKey = dotenv.get(SEND_GRID_KEY_NAME);
 
-        System.out.printf("Sendgridkey: " + sendGridKey);
-        SendGrid sg = new SendGrid(sendGridKey);
+        SendGrid sendGridClient = new SendGrid(sendGridKey);
         Request request = new Request();
         try {
             request.setMethod(Method.POST);
             request.setEndpoint("mail/send");
             request.setBody(mail.build());
-            Response response = sg.api(request);
-            System.out.println(response.getStatusCode());
-            System.out.println(response.getBody());
-            System.out.println(response.getHeaders());
+            sendGridClient.api(request);
         } catch (IOException ex) {
             System.out.println("Exception during sending email: " + ex);
         }
