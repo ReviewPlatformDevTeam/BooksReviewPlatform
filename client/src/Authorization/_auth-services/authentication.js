@@ -1,3 +1,4 @@
+const API_URL = process.env.REACT_APP_API_URL;
 const userKey = { key: 'user' };
 
 const checkStatus = (response) => {
@@ -8,7 +9,7 @@ const checkStatus = (response) => {
 }
 
 const login = (username, password) => {
-    const url = "/login";
+    const url = `${API_URL}/login`;
     const loginBody = {
         username: username,
         password: password
@@ -18,7 +19,7 @@ const login = (username, password) => {
         method: "POST",
         mode: 'cors',
         headers: {
-            "Content-type": "application/json"
+            "Content-type": "application/x-www-form-urlencoded"
         },
         body: JSON.stringify(loginBody)
     };
@@ -44,4 +45,21 @@ const authenticateUser = (user) => {
     window.localStorage.setItem(userKey.key, JSON.stringify(user));
 }
 
-export const authService = { login, logout, isAuthenticated, authenticateUser };
+const reset = (email) => {
+    const loginBody = {
+        email: email
+    };
+
+    const fetchData = {
+        method: "POST",
+        mode: 'no-cors',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify(loginBody)
+    };
+
+    return fetch(`${API_URL}/resetPassword`, fetchData);
+};
+
+export const authService = { login, logout, isAuthenticated, authenticateUser, reset };
