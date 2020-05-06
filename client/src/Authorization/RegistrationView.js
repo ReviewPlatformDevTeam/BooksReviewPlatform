@@ -47,7 +47,7 @@ class RegistrationView extends Component {
             .catch(error => {
                 return {success: false, status: error.message}
             });
-    };
+    }
 
     handleEmailChange(event) {
         this.setState({email: event.target.value})
