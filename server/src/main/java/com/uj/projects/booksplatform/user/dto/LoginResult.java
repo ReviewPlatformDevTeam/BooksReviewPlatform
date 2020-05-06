@@ -1,4 +1,4 @@
-package com.uj.projects.booksplatform.user.entity;
+package com.uj.projects.booksplatform.user.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

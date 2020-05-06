@@ -1,6 +1,6 @@
 package com.uj.projects.booksplatform.user.service;
 
-import com.uj.projects.booksplatform.user.entity.LoginResult;
+import com.uj.projects.booksplatform.user.dto.LoginResult;
 import com.uj.projects.booksplatform.user.resources.LoginResources;
 import com.uj.projects.booksplatform.user.wrappers.JwtBuilderWrapper;
 import org.springframework.beans.factory.annotation.Autowired;

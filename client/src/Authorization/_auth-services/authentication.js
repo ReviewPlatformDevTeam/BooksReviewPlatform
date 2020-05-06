@@ -9,14 +9,18 @@ const checkStatus = (response) => {
 
 const login = (username, password) => {
     const url = "/login";
+    const loginBody = {
+        username: username,
+        password: password
+    };
+
     const fetchData = {
         method: "POST",
-        body: {
-            username: username,
-            password: password
+        mode: 'cors',
+        headers: {
+            "Content-type": "application/json"
         },
-        headers: new Headers(),
-        mode: "cors"
+        body: JSON.stringify(loginBody)
     };
 
     return fetch(url, fetchData)

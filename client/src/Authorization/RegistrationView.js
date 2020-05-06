@@ -61,9 +61,9 @@ class RegistrationView extends Component {
 
 
     render() {
-        const { username, email, password, redirect } = this.state;
 
-        if(redirect) {
+        if(this.state.redirect) {
+
             return (<Redirect to='/signedup' />);
         }
 
@@ -91,14 +91,16 @@ class RegistrationView extends Component {
         required
         />
         <input
-        type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
-        title="Your password must be at least 6 characters as well as contain at least one uppercase, one lowercase, and one number."
+
+        type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}"
+        title="Your password must be at least 5 characters as well as contain at least one uppercase, one lowercase, and one number."
+
         placeholder="Password"
         value={this.state.password}
         onChange={this.handlePasswordChange}
         required
         />
-        <input type="submit" value="Get Started!" />
+        <input type="submit" value="Register me!" />
         </form>
         </div>
         </div>
