@@ -1,5 +1,6 @@
 package com.uj.projects.booksplatform.user.validator;
 
+import com.uj.projects.booksplatform.error.exception.AlreadyExistsException;
 import com.uj.projects.booksplatform.error.exception.DefaultRuntimeException;
 import com.uj.projects.booksplatform.user.entity.User;
 import com.uj.projects.booksplatform.user.repository.UserRepository;
@@ -18,19 +19,14 @@ public class UserValidator {
         this.userRepository = userRepository;
     }
 
-    public boolean validateIfUserAlreadyRegistered(String username, String email) {
-        Map<String, String> errors = new HashMap<>();
+    public void validateIfUserAlreadyRegistered(String username, String email) {
         User userWithGivenUsername = userRepository.findUserByUsername(username);
         User userWithGivenEmail = userRepository.findUserByEmail(email);
         if(userWithGivenUsername != null){
-            errors.put("username", "User with given username is already registered");
+            throw new AlreadyExistsException("User with given username is already registered");
         }
         if(userWithGivenEmail != null){
-            errors.put("email", "User with given email is already registered");
+            throw new AlreadyExistsException("User with given email is already registered");
         }
-        if(!errors.isEmpty()){
-            throw new DefaultRuntimeException(errors);
-        }
-        return false;
     }
 }

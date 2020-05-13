@@ -1,5 +1,6 @@
 package com.uj.projects.booksplatform.user.service;
 
+import com.uj.projects.booksplatform.error.exception.AlreadyExistsException;
 import com.uj.projects.booksplatform.user.entity.User;
 import com.uj.projects.booksplatform.user.repository.UserRepository;
 import com.uj.projects.booksplatform.user.validator.UserValidator;
@@ -31,10 +32,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user) {
-        boolean alreadyExists = userValidator.validateIfUserAlreadyRegistered(user.getUsername(), user.getEmail());
-        if(alreadyExists){
-            return null;
-        }
+        userValidator.validateIfUserAlreadyRegistered(user.getUsername(), user.getEmail());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }

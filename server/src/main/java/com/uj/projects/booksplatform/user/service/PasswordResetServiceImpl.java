@@ -1,6 +1,7 @@
 package com.uj.projects.booksplatform.user.service;
 
 import com.uj.projects.booksplatform.error.exception.DefaultRuntimeException;
+import com.uj.projects.booksplatform.error.exception.NotFoundException;
 import com.uj.projects.booksplatform.user.entity.User;
 import com.uj.projects.booksplatform.user.wrappers.PasswordBuilderWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class PasswordResetServiceImpl implements PasswordResetService {
     private void updateUserPassword(String email, String newPassword){
         User user = userService.getUserByEmail(email);
         if(user == null){
-            throw new DefaultRuntimeException("email", "User with given email address doesn't exist");
+            throw new NotFoundException("User with given email address: " + email + " doesn't exist");
         }
         user.setPassword(newPassword);
         userService.updateUser(user);

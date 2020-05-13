@@ -1,5 +1,6 @@
 package com.uj.projects.booksplatform;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.uj.projects.booksplatform.user.JwtFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -16,6 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.sql.DataSource;
 import java.util.Collections;
+import java.util.TimeZone;
 
 @EnableSwagger2
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
@@ -24,6 +26,11 @@ public class BooksPlatformApplication {
 
 	@Autowired
 	Environment env;
+
+	@Autowired
+	public void configureJackson(ObjectMapper objectMapper) {
+		objectMapper.setTimeZone(TimeZone.getDefault());
+	}
 
 	@Bean
 	public DataSource dataSource() {

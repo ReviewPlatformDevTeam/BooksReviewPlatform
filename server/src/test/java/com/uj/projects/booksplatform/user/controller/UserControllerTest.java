@@ -5,10 +5,12 @@ import autofixture.publicinterface.Any;
 import com.uj.projects.booksplatform.user.dto.LoginRequest;
 import com.uj.projects.booksplatform.user.dto.LoginResponse;
 import com.uj.projects.booksplatform.user.dto.LoginResult;
+import com.uj.projects.booksplatform.user.dto.UserDto;
 import com.uj.projects.booksplatform.user.entity.User;
 
 import com.uj.projects.booksplatform.user.entity.*;
 
+import com.uj.projects.booksplatform.user.mapper.UserMapper;
 import com.uj.projects.booksplatform.user.service.LoginService;
 import com.uj.projects.booksplatform.user.service.PasswordResetService;
 import com.uj.projects.booksplatform.user.service.UserService;
@@ -26,26 +28,34 @@ class UserControllerTest {
     private UserController userController;
     private UserService userService;
     private PasswordResetService passwordResetService;
+    private UserMapper userMapper;
 
     @BeforeEach
     void SetUp(){
         loginService = mock(LoginService.class);
         userService = mock(UserService.class);
         passwordResetService = mock(PasswordResetService.class);
-        userController = new UserController(loginService, userService, passwordResetService);
+        userMapper = mock(UserMapper.class);
+        userController = new UserController(loginService, userService, passwordResetService, userMapper);
     }
 
     @Test
     void shouldCallRepoAndReturnUserWhenProperArgumentsProvided(){
         // Arrange
-        User requestBody = new User();
+        User user = new User();
+        user.setPassword(Any.string());
+        user.setEmail(Any.string());
+        user.setUsername(Any.string());
+
+        UserDto requestBody = new UserDto();
         requestBody.setPassword(Any.string());
         requestBody.setEmail(Any.string());
         requestBody.setUsername(Any.string());
-        given(userService.createUser(requestBody)).willReturn(requestBody);
+
+        given(userService.createUser(user)).willReturn(user);
 
         // Act
-        User newUser = userController.registerUser(requestBody);
+        UserDto newUser = userController.registerUser(requestBody);
 
         // Assert
         Assert.assertEquals(newUser.getPassword(), requestBody.getPassword());
@@ -62,13 +72,13 @@ class UserControllerTest {
         boolean successLogin = true;
         String token = Any.string();
         LoginResult loginResult = new LoginResult(successLogin, token);
-        when(loginService.Login(username)).thenReturn(loginResult);
+        when(loginService.Login(username, password)).thenReturn(loginResult);
 
         // Act
         LoginResponse actual = userController.Login(request);
 
         // Assert
-        verify(loginService, atLeastOnce()).Login(username);
+        verify(loginService, atLeastOnce()).Login(username, password);
         Assert.assertTrue(actual.isSuccess());
         Assert.assertEquals(actual.getToken(), token);
     }

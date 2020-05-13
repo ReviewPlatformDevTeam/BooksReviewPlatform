@@ -1,0 +1,25 @@
+package com.uj.projects.booksplatform.book.dto;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.uj.projects.booksplatform.date.DateResources;
+import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.validation.constraints.NotBlank;
+import java.util.Date;
+
+@Data
+@AllArgsConstructor@NoArgsConstructor
+public class BookDto {
+    private Integer id;
+
+    @NotBlank
+    private String title;
+
+    @NotBlank
+    private String author;
+
+    @DateTimeFormat(pattern = DateResources.dateFormat)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DateResources.dateFormat, timezone = JsonFormat.DEFAULT_TIMEZONE)
+    private Date releaseDate;
+}
