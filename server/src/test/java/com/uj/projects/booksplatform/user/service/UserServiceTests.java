@@ -4,6 +4,7 @@ import autofixture.publicinterface.Any;
 import com.uj.projects.booksplatform.user.entity.User;
 import com.uj.projects.booksplatform.user.repository.UserRepository;
 import com.uj.projects.booksplatform.user.validator.UserValidator;
+import com.uj.projects.booksplatform.user.wrappers.PasswordBuilderWrapper;
 import lombok.SneakyThrows;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,13 +19,15 @@ public class UserServiceTests {
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
     private UserValidator userValidator;
+    private PasswordBuilderWrapper passwordBuilderWrapper;
 
     @BeforeEach
     public void SetUp(){
         userRepository = mock(UserRepository.class);
         passwordEncoder = mock(PasswordEncoder.class);
         userValidator = mock(UserValidator.class);
-        sut = new UserServiceImpl(userRepository, passwordEncoder, userValidator);
+        passwordBuilderWrapper = mock(PasswordBuilderWrapper.class);
+        sut = new UserServiceImpl(userRepository, passwordEncoder, userValidator, passwordBuilderWrapper);
     }
 
     @SneakyThrows

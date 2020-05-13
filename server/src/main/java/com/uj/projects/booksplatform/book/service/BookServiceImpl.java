@@ -2,7 +2,6 @@ package com.uj.projects.booksplatform.book.service;
 
 import com.uj.projects.booksplatform.book.entity.Book;
 import com.uj.projects.booksplatform.book.repository.BookRepository;
-import com.uj.projects.booksplatform.error.exception.DefaultRuntimeException;
 import com.uj.projects.booksplatform.error.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

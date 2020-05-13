@@ -1,11 +1,16 @@
 package com.uj.projects.booksplatform.error.exception;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter@Setter@NoArgsConstructor@AllArgsConstructor
-public class NotFoundException extends RuntimeException{
-    private String errorMessage;
+import java.util.Map;
+
+@NoArgsConstructor
+public class NotFoundException extends DefaultRuntimeException{
+    public NotFoundException(Map<String, String> parameters){
+        super(parameters);
+    }
+
+    public NotFoundException(String errorMessages){
+        super(errorMessages);
+    }
 }

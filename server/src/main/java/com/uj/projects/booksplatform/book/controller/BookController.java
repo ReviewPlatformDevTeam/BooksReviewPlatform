@@ -26,20 +26,23 @@ public class BookController {
 
     @GetMapping
     public List<BookDto> getBooks(){
-        return bookService.getAllBooks().stream().map(bookMapper::bookToBookDto).collect(Collectors.toList());
+        return bookService.getAllBooks().stream()
+                .map(bookMapper::bookToBookDto)
+                .map(this::mockNotExistingProperties).collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
     public BookDto getBook(@PathVariable("id") Integer id){
         Book book = bookService.getBookById(id);
-        return bookMapper.bookToBookDto(book);
+        BookDto bookDto = bookMapper.bookToBookDto(book);
+        return mockNotExistingProperties(bookDto);
     }
 
     @PostMapping
     public BookDto createBook(@Valid @RequestBody BookDto bookDto){
         Book book = bookMapper.bookDtoToBook(bookDto);
         Book createdBook = bookService.createBook(book);
-        return bookMapper.bookToBookDto(createdBook);
+        return mockNotExistingProperties(bookMapper.bookToBookDto(createdBook));
     }
 
     @PostMapping("/{id}")
@@ -47,11 +50,17 @@ public class BookController {
         Book book = bookMapper.bookDtoToBook(bookDto);
         book.setId(id);
         Book updatedBook = bookService.updateBook(book);
-        return bookMapper.bookToBookDto(updatedBook);
+        return mockNotExistingProperties(bookMapper.bookToBookDto(updatedBook));
     }
 
     @DeleteMapping("/{id}")
     public void deleteBook(@PathVariable("id") Integer id){
         bookService.deleteBook(id);
+    }
+
+    private BookDto mockNotExistingProperties(BookDto bookDto){
+        bookDto.setScore(5.0F);
+        bookDto.setNumOfReviews(123);
+        return bookDto;
     }
 }

@@ -13,7 +13,6 @@ import com.uj.projects.booksplatform.user.entity.*;
 import com.uj.projects.booksplatform.user.mapper.UserMapper;
 import com.uj.projects.booksplatform.user.service.LoginService;
 import com.uj.projects.booksplatform.user.service.PasswordResetService;
-import com.uj.projects.booksplatform.user.service.UserNotFoundException;
 import com.uj.projects.booksplatform.user.service.UserService;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;

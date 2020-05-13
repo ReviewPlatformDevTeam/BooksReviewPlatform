@@ -1,14 +1,10 @@
 package com.uj.projects.booksplatform.user.validator;
 
 import com.uj.projects.booksplatform.error.exception.AlreadyExistsException;
-import com.uj.projects.booksplatform.error.exception.DefaultRuntimeException;
 import com.uj.projects.booksplatform.user.entity.User;
 import com.uj.projects.booksplatform.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Component
 public class UserValidator {

@@ -11,7 +11,7 @@ import java.util.Map;
 
 @Getter@Setter@NoArgsConstructor@AllArgsConstructor
 public class DefaultRuntimeException extends RuntimeException {
-    Map<String, String> errors;
+    private Map<String, String> errors;
     private List<String> additionalMessages;
 
 
