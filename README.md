@@ -17,3 +17,9 @@ To upload the new stable version of application to DockerHub please folow the gu
 **NOTE:** Docker images/containers **DO** occupy the space on your computer. To ommit exceeding the free space, it's recommended to remove all the unused images/containers. To achive this, please do the following atleast once a week if you use docker:
  - docker system prune -a
 **This will remove all unused images, stoped containers, volumes and networks.**
+
+## Developer full setup:
+### Add sendgrid api key
+- Create .env file under /server
+- Add `SENDGRID_API_KEY=*` in .env file
+- use sendgrid api key instead of *

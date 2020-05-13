@@ -13,6 +13,7 @@
     "enquire-js": "^0.2.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
+    "moment": "^2.25.1",
     "rc-queue-anim": "^1.8.4",
     "rc-scroll-anim": "^2.7.4",
     "rc-tween-one": "^2.6.8",

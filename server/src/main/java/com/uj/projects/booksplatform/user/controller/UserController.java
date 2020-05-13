@@ -1,6 +1,7 @@
 package com.uj.projects.booksplatform.user.controller;
 
 
+import com.uj.projects.booksplatform.error.dto.ErrorResponse;
 import com.uj.projects.booksplatform.user.dto.LoginRequest;
 import com.uj.projects.booksplatform.user.dto.LoginResponse;
 import com.uj.projects.booksplatform.user.dto.LoginResult;
@@ -8,6 +9,8 @@ import com.uj.projects.booksplatform.user.dto.LoginResult;
 
 import com.uj.projects.booksplatform.user.entity.*;
 import com.uj.projects.booksplatform.user.service.LoginService;
+import com.uj.projects.booksplatform.user.service.PasswordResetService;
+import com.uj.projects.booksplatform.user.service.UserNotFoundException;
 import com.uj.projects.booksplatform.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,11 +23,13 @@ public class UserController {
 
     private final LoginService loginService;
     private final UserService userService;
+    private final PasswordResetService passwordResetService;
 
     @Autowired
-    public UserController(LoginService loginService, UserService userService) {
+    public UserController(LoginService loginService, UserService userService, PasswordResetService passwordResetService) {
         this.loginService = loginService;
         this.userService = userService;
+        this.passwordResetService = passwordResetService;
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -40,9 +45,9 @@ public class UserController {
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
+    @PostMapping(value = "/resetPassword")
     public PasswordResetResponse ResetPassword(PasswordResetRequest request){
-        return new PasswordResetResponse(true, "");
+        boolean result = passwordResetService.resetPassword(request.getEmail());
+        return new PasswordResetResponse(result);
     }
-
 }
