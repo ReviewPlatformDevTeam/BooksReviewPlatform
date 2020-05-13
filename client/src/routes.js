@@ -10,10 +10,12 @@ const BaseRouter = () => (
        <Route path="/login" component={LoginView} />
        <Route path="/register" component={RegistrationView} />
        <Route path="/signedin" />
+       <Route path="/signedup" />
        <Route path="/resetPassword" component={PasswordResetView} />
        <Route path="/signedout" component={MainView} />
        <Route path="/" component={MainView} />
    </Switch>
+
 );
 
 export default BaseRouter;
