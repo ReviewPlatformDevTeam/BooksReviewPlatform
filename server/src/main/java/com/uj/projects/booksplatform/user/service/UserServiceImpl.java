@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -23,7 +25,6 @@ public class UserServiceImpl implements UserService {
         this.passwordEncoder = passwordEncoder;
         this.userValidator = userValidator;
     }
-
 
     @Override
     public List<User> getAllUsers() {
@@ -46,6 +47,20 @@ public class UserServiceImpl implements UserService {
     public User updateUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
+    }
+
+    @Override
+    public String resetPassword(String email) throws UserNotFoundException {
+        User user = userRepository.findUserByEmail(email);
+        if (user == null){
+            Map<String, String> errors = new HashMap<>();
+            errors.put("user", "User with email " + email + " not found.");
+            throw new UserNotFoundException(errors);
+        }
+        String newPassword = "12345678910"; // to be change in #29
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
+        return newPassword;
     }
 
     @Override

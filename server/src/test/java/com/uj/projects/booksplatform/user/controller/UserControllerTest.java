@@ -13,9 +13,12 @@ import com.uj.projects.booksplatform.user.entity.*;
 import com.uj.projects.booksplatform.user.mapper.UserMapper;
 import com.uj.projects.booksplatform.user.service.LoginService;
 import com.uj.projects.booksplatform.user.service.PasswordResetService;
+import com.uj.projects.booksplatform.user.service.UserNotFoundException;
 import com.uj.projects.booksplatform.user.service.UserService;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.testng.Assert;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -83,36 +86,19 @@ class UserControllerTest {
         Assert.assertEquals(actual.getToken(), token);
     }
 
-
+    @SneakyThrows
     @Test()
-    void shouldThrowExceptionWhenUserNameIsEmpty(){
+    void shouldCallPasswordResetServiceAndReturnResponse() {
         // Arrange
-        String password = Any.string();
-        LoginRequest request = new LoginRequest("", password);
-
-        // Act && Assert
-        assertThrows(IllegalArgumentException.class, () -> { userController.Login(request);});
-    }
-
-    @Test()
-    void shouldThrowExceptionWhenPasswordIsEmpty(){
-        // Arrange
-        String username = Any.string();
-        LoginRequest request = new LoginRequest(username, "");
-
-        // Act && Assert
-        assertThrows(IllegalArgumentException.class, () -> { userController.Login(request);});
-    }
-
-    @Test()
-    void shouldReturnSuccessDuringPassWordReset(){
-        // Arrange
-        PasswordResetRequest request = Any.instanceOf(PasswordResetRequest.class);
+        PasswordResetRequest request = new PasswordResetRequest();
+        String email = Any.string();
+        request.setEmail(email);
 
         // Act
         PasswordResetResponse response = userController.ResetPassword(request);
 
-        // Assert
-        Assert.assertTrue(response.isSuccess());
+        // Asserts
+        verify(passwordResetService, times(1)).resetPassword(email);
+        Assert.assertNotNull(response);
     }
 }

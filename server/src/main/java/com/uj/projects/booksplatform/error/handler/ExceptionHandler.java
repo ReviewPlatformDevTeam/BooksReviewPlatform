@@ -6,6 +6,7 @@ import com.uj.projects.booksplatform.error.exception.BadCredentialsException;
 import com.uj.projects.booksplatform.error.exception.DefaultRuntimeException;
 import com.uj.projects.booksplatform.error.exception.NotFoundException;
 import org.springframework.http.HttpHeaders;
+import com.uj.projects.booksplatform.user.service.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -62,5 +63,11 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
     @org.springframework.web.bind.annotation.ExceptionHandler(AlreadyExistsException.class)
     public ErrorResponse handleAlreadyExistsExceptions(AlreadyExistsException ex) {
         return new ErrorResponse(ex.getErrorMessage());
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @org.springframework.web.bind.annotation.ExceptionHandler(UserNotFoundException.class)
+    public ErrorResponse handleUserNotFoundException(UserNotFoundException ex){
+        return new ErrorResponse(ex.getErrors());
     }
 }
