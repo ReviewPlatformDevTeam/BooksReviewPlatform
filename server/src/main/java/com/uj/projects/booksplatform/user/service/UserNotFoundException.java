@@ -1,4 +1,11 @@
 package com.uj.projects.booksplatform.user.service;
 
-public class UserNotFoundException extends Throwable {
+import com.uj.projects.booksplatform.error.exception.DefaultRuntimeException;
+
+import java.util.Map;
+
+public class UserNotFoundException extends DefaultRuntimeException {
+    public UserNotFoundException(Map<String, String> errors) {
+        super(errors);
+    }
 }

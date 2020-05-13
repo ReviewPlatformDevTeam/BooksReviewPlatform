@@ -1,5 +1,5 @@
 package com.uj.projects.booksplatform.user.service.email;
 
 public interface EmailSender {
-    void SendEmail(String from, String to, String topic, String content);
+    boolean SendEmail(String from, String to, String topic, String content);
 }

@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -15,14 +17,12 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
     private UserValidator userValidator;
-    private RandomPasswordGenerator randomPasswordGenerator;
 
     @Autowired
-    UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, UserValidator userValidator, RandomPasswordGenerator randomPasswordGenerator){
+    UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, UserValidator userValidator){
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.userValidator = userValidator;
-        this.randomPasswordGenerator = randomPasswordGenerator;
     }
 
     @Override
@@ -55,9 +55,11 @@ public class UserServiceImpl implements UserService {
     public String resetPassword(String email) throws UserNotFoundException {
         User user = userRepository.findUserByEmail(email);
         if (user == null){
-            throw new UserNotFoundException();
+            Map<String, String> errors = new HashMap<>();
+            errors.put("user", "User with email " + email + " not found.");
+            throw new UserNotFoundException(errors);
         }
-        String newPassword = randomPasswordGenerator.generate();
+        String newPassword = "12345678910"; // to be change in #29
         user.setPassword(passwordEncoder.encode(newPassword));
         userRepository.save(user);
         return newPassword;

@@ -17,7 +17,7 @@ public class SendgridEmailSender implements EmailSender {
     private static final String SEND_GRID_KEY_NAME = "SENDGRID_API_KEY";
 
     @Override
-    public void SendEmail(String from, String to, String topic, String content) {
+    public boolean SendEmail(String from, String to, String topic, String content) {
         Email fromEmail = new Email(from);
         Email toEmail = new Email(to);
         Content emailContent = new Content("text/plain", content);
@@ -35,6 +35,8 @@ public class SendgridEmailSender implements EmailSender {
             sendGridClient.api(request);
         } catch (IOException ex) {
             System.out.println("Exception during sending email: " + ex);
+            return false;
         }
+        return true;
     }
 }

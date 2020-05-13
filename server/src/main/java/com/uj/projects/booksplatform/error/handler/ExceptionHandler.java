@@ -2,6 +2,7 @@ package com.uj.projects.booksplatform.error.handler;
 
 import com.uj.projects.booksplatform.error.dto.ErrorResponse;
 import com.uj.projects.booksplatform.error.exception.DefaultRuntimeException;
+import com.uj.projects.booksplatform.user.service.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -31,6 +32,12 @@ public class ExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @org.springframework.web.bind.annotation.ExceptionHandler(DefaultRuntimeException.class)
     public ErrorResponse handleValidationExceptions(DefaultRuntimeException ex) {
+        return new ErrorResponse(ex.getErrors());
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @org.springframework.web.bind.annotation.ExceptionHandler(UserNotFoundException.class)
+    public ErrorResponse handleUserNotFoundException(UserNotFoundException ex){
         return new ErrorResponse(ex.getErrors());
     }
 }

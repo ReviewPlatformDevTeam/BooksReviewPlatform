@@ -45,14 +45,9 @@ public class UserController {
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
+    @PostMapping(value = "/resetPassword")
     public PasswordResetResponse ResetPassword(PasswordResetRequest request){
-        try {
-            passwordResetService.resetPassword(request.getEmail());
-        } catch (Exception | UserNotFoundException e) {
-            return new PasswordResetResponse(false, e.getMessage());
-        }
-        return new PasswordResetResponse(true, "");
+        boolean result = passwordResetService.resetPassword(request.getEmail());
+        return new PasswordResetResponse(result);
     }
-
 }
