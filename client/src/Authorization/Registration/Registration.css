@@ -5,7 +5,7 @@
     padding-top: 100px;
     flex-grow: 1;
     width: 100%;
-    background-image: url("../pictures/MainView_backgound.jpg");
+    background-image: url("../../pictures/MainView_backgound.jpg");
     background-repeat: no-repeat;
     background-position: top center;
     background-attachment: fixed;
@@ -19,7 +19,7 @@
     bottom: 0;
     margin: auto;
     width: 360px;
-    height: 320px;
+    height: 360px;
     border-radius: 15px;
     background: rgba(220,220,220,0.5);
     box-shadow: 1px 1px 50px #000;

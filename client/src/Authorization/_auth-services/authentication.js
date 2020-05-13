@@ -15,21 +15,27 @@ const login = (username, password) => {
         password: password
     };
 
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Content-Type", "text/plain");
+
+    let raw = JSON.stringify(loginBody);
+
     const fetchData = {
-        method: "POST",
-        mode: 'cors',
-        headers: {
-            "Content-type": "application/x-www-form-urlencoded"
-        },
-        body: JSON.stringify(loginBody)
+        method: 'POST',
+        mode: "cors",
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
     };
 
     return fetch(url, fetchData)
-    .then(response => checkStatus(response))
-    .then(response => response.json())
-    .catch(error => {
-        return {success: false, status: error.message}
-    });
+        .then(response => checkStatus(response))
+        .then(response => response.text())
+        .then(response => JSON.parse(response))
+        .catch(error => {
+            return {success: false, status: error.message}
+        });
 };
 
 const logout = () => {
@@ -46,20 +52,57 @@ const authenticateUser = (user) => {
 }
 
 const reset = (email) => {
-    const loginBody = {
+    const resetBody = {
         email: email
     };
 
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Content-Type", "text/plain");
+
+    let raw = JSON.stringify(resetBody);
+
     const fetchData = {
-        method: "POST",
-        mode: 'no-cors',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: JSON.stringify(loginBody)
+        method: 'POST',
+        mode: "cors",
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
     };
 
-    return fetch(`${API_URL}/resetPassword`, fetchData);
+    return fetch(`${API_URL}/resetPassword`, fetchData)
+        .then(response => checkStatus(response))
+        .then(response => response.text())
+        .then(response => JSON.parse(response))
+        .catch(error => {
+            return {success: false, status: error.message}
+        });
 };
 
-export const authService = { login, logout, isAuthenticated, authenticateUser, reset };
+const register = (addUser) => {
+    const url = `${API_URL}/users`;
+
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Content-Type", "text/plain");
+
+    let raw = JSON.stringify(addUser);
+
+    let fetchData = {
+        method: 'POST',
+        mode: "cors",
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    return fetch(url, fetchData)
+        .then(response => checkStatus(response))
+        .then(response => response.text())
+        .then(response => JSON.parse(response))
+        .catch(error => {
+            return {success: false, status: error.message}
+        });
+}
+
+export const authService = { login, logout, isAuthenticated, authenticateUser, reset, register };

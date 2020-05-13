@@ -19,7 +19,7 @@ export class PasswordReset extends Component {
         if (!this.state.email) return;
 
         const response = await authService.reset(this.state.email);
-        if (response.type === 'opaque' || response.ok) {
+        if(response.success) {
             alert('Reset link sent to ' + this.state.email);
             this.props.history.push('/login');
         } else {
