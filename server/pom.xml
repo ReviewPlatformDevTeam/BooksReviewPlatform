@@ -98,7 +98,7 @@
 		<dependency>
 			<groupId>io.github.cdimascio</groupId>
 			<artifactId>java-dotenv</artifactId>
-			<version>5.1.4</version>
+			<version>5.2.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
