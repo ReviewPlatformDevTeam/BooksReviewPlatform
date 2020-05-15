@@ -46,6 +46,7 @@ class CustomLayout extends React.Component{
                     style={{float: 'right'}}>
                     <Link to="/login">Login</Link>
                 </Menu.Item>
+
             </Menu>
         );
     }
@@ -56,6 +57,11 @@ class CustomLayout extends React.Component{
                 theme="light"
                 mode="horizontal"
                 style={{lineHeight: '64px'}} >
+<Menu.Item
+    key="booksList"
+    style={{float: 'right'}}>
+<Link to="/booksList">Books</Link>
+        </Menu.Item>
                 <Menu.Item
                     key="home"
                     style={{float: 'center', marginLeft: '-5%'}}>

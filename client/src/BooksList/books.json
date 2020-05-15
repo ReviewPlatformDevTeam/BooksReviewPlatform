@@ -1,0 +1,74 @@
+{
+
+    "book1": {
+      "id": 1,
+      "title": "Harry Potter. The Philosopher's Stone",
+      "author": "J. K. Rowling",
+      "releaseDate": "2020-02-20",
+      "score": 4.3,
+      "numOfReviews": 87,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ",
+      "image": "https://cdn.eksmo.ru/v2/ASE000000000715318/COVER/cover3d1__w340.jpg"
+    },
+    "book2": {
+      "id": 2,
+      "title": "The Four Agreements: A Practical Guide to Personal Freedom ",
+      "author": "Miguel Ruiz, Janet Mills",
+      "releaseDate": "2017-02-22",
+      "score": 1.5,
+      "numOfReviews": 7,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ",
+      "image": "https://cdn.eksmo.ru/v2/430000000000137585/COVER/cover3d1__w340.jpg"
+
+    },
+    "book3": {
+      "id": 3,
+      "title": "Rich Dad Poor Dad: What the Rich Teach Their Kids About Money That the Poor and Middle Class Do Not!\nRich Dad Poor Dad: What the Rich Teach Their Kids About Money That the Poor and Middle Class Do Not!",
+      "author": " Robert T. Kiyosaki",
+      "releaseDate": "2017-02-22",
+      "score": 4.9,
+      "numOfReviews": 3456,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ",
+      "media": "https://cdn.eksmo.ru/v2/ASE000000000710292/COVER/cover3d1__w340.jpg"
+    },
+    "book4": {
+      "id": 4,
+      "title": "Harry Potter. The Goblet of Fire",
+      "author": "J. K. Rowling",
+      "releaseDate": "2019-02-22",
+      "score": 0,
+      "numOfReviews": 0,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ",
+      "image": "https://cdn.eksmo.ru/v2/430000000000179055/COVER/cover3d1__w340.jpg"
+    },
+    "book5": {
+      "id": 5,
+      "title": "Harry Potter. The Order of the Phoenix",
+      "author": "J. K. Rowling",
+      "releaseDate": "2020-02-30",
+      "score": 0,
+      "numOfReviews": 0,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ",
+      "image": "https://cdn.eksmo.ru/v2/ASE000000000718282/COVER/cover3d1__w340.jpg"
+    },
+  "book6": {
+    "id": 6,
+    "title": "Harry Potter. The Order of the Phoenix",
+    "author": "J. K. Rowling",
+    "releaseDate": "2020-02-30",
+    "score": 0,
+    "numOfReviews": 0,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ",
+    "image": "https://cdn.eksmo.ru/v2/ASE000000000718282/COVER/cover3d1__w340.jpg"
+  },
+  "book7": {
+    "id": 7,
+    "title": "Harry Potter. The Order of the Phoenix",
+    "author": "J. K. Rowling",
+    "releaseDate": "2020-02-30",
+    "score": 0,
+    "numOfReviews": 0,
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ",
+    "image": "https://cdn.eksmo.ru/v2/ASE000000000718282/COVER/cover3d1__w340.jpg"
+  }
+}
