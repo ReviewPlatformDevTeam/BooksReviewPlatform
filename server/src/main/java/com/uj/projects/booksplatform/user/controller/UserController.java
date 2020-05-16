@@ -33,20 +33,21 @@ public class UserController {
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public LoginResponse Login(LoginRequest loginRequest){
+    @PostMapping("/login")
+    public LoginResponse Login(@Valid@RequestBody LoginRequest loginRequest){
         LoginResult result = loginService.Login(loginRequest.getUsername());
        return new LoginResponse(result.isSuccess(), result.getToken());
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/users")
     public User registerUser(@Valid @RequestBody User user){
         return userService.createUser(user);
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @PostMapping(value = "/resetPassword")
-    public PasswordResetResponse ResetPassword(PasswordResetRequest request){
+    @PostMapping("/resetPassword")
+    public PasswordResetResponse ResetPassword(@Valid @RequestBody PasswordResetRequest request){
         boolean result = passwordResetService.resetPassword(request.getEmail());
         return new PasswordResetResponse(result);
     }
