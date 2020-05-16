@@ -57,11 +57,11 @@ class CustomLayout extends React.Component{
                 theme="light"
                 mode="horizontal"
                 style={{lineHeight: '64px'}} >
-<Menu.Item
-    key="booksList"
-    style={{float: 'right'}}>
-<Link to="/booksList">Books</Link>
-        </Menu.Item>
+                <Menu.Item
+                    key="booksList"
+                    style={{float: 'center', marginLeft: '2%'}}>
+                    <Link to="/booksList">Books</Link>
+                </Menu.Item>
                 <Menu.Item
                     key="home"
                     style={{float: 'center', marginLeft: '-5%'}}>
