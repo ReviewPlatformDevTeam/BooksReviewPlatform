@@ -27,11 +27,12 @@
     background-size: cover;
 }
 .imageContainer img{
-    text-align: left;
     width: 130px;
     height: 185px;
     float: left;
     border: 0px;
+    text-align: left;
+    font-size: 8px;
 }
 .titleContainer {
     width: inherit;
@@ -40,7 +41,7 @@
     float: center;
     margin-bottom: 0px;
     font-family: serif;
-font-size: 16px;
+    font-size: 16px;
     padding-left: 40px;
     display: flex;
     flex-direction: column;
@@ -91,4 +92,3 @@ font-size: 16px;
     overflow: visible;
     height: auto;
 }
-
