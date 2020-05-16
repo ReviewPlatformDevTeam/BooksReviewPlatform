@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import data from './books.json';
 import './BooksList.css';
 import Rater from 'react-rater';
 import 'react-rater/lib/react-rater.css';
 
-const axios = require('axios');
 
 class BooksList extends Component {
 
