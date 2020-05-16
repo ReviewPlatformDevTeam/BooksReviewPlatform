@@ -21,7 +21,7 @@ class CustomLayout extends React.Component{
     }
 
     setMenu() {
-        let authorizedMenuPaths = ['/signedin'];
+        let authorizedMenuPaths = ['/signedin', '/booksList'];
         let type = authorizedMenuPaths.includes(window.location.pathname) ? "authorized": "non-authorized";
 
         if (type === "authorized") this.iconPath = '/signedin';
@@ -58,11 +58,6 @@ class CustomLayout extends React.Component{
                 mode="horizontal"
                 style={{lineHeight: '64px'}} >
                 <Menu.Item
-                    key="booksList"
-                    style={{float: 'center', marginLeft: '2%'}}>
-                    <Link to="/booksList">Books</Link>
-                </Menu.Item>
-                <Menu.Item
                     key="home"
                     style={{float: 'center', marginLeft: '-5%'}}>
                     <Link to="/signedin"><HomeOutlined />Home</Link>
@@ -82,6 +77,11 @@ class CustomLayout extends React.Component{
                     onClick={() => {authService.logout()}}
                     style={{float: 'right'}}>
                     <Link to="/signedout">Sign out</Link>
+                </Menu.Item>
+                <Menu.Item
+                    key="booksList"
+                    style={{float: 'center', marginLeft: '2%'}}>
+                    <Link to="/booksList">Books</Link>
                 </Menu.Item>
             </Menu>
         );
