@@ -15,7 +15,7 @@ class BooksList extends Component {
             <div className="BookContainer">
 
                 <div className="imageContainer">
-                 <img src={data[item].image}/>
+                      <img src={data[item].image} alt="No image"/>
                  </div>
 
                 <div className="titleContainer">
