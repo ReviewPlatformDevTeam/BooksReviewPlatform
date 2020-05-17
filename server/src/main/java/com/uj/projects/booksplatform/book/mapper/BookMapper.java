@@ -11,8 +11,11 @@ import org.mapstruct.Mapping;
 public interface BookMapper {
 
     @Mapping(target="releaseDate", dateFormat = DateResources.dateFormat)
+    @Mapping(source = "category", target = "category.name")
     Book bookDtoToBook(BookDto bookDto);
 
     @Mapping(target="releaseDate", dateFormat = DateResources.dateFormat)
+    @Mapping(source = "category.name", target = "category")
     BookDto bookToBookDto(Book book);
+
 }
