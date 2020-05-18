@@ -16,7 +16,9 @@ export class BookProfile extends Component {
 
         let splitedPath = window.location.pathname.split("/");
         let bookId = defaultBookId;
-        if(splitedPath.length === 3) bookId = parseInt(splitedPath[2]);
+        if(splitedPath.length === 3) {
+            bookId = parseInt(splitedPath[2]);
+        }
 
         this.state = {
             bookId: bookId,
@@ -32,7 +34,9 @@ export class BookProfile extends Component {
         let bookData = Object.keys(data).filter(item => { return data[item].id === this.state.bookId })[0];
         bookData = data[bookData];
 
-        if(bookData.image.length === 0) bookData.image = defaultBook;
+        if(bookData.image.length === 0) {
+            bookData.image = defaultBook;
+        }
         this.setState({bookData: bookData})
     }
 
