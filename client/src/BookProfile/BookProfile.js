@@ -7,6 +7,7 @@ import { withRouter } from "react-router-dom";
 import defaultBook from '../pictures/bookSmile.png';
 
 const { Meta } = Card;
+const defaultBookId = 1;
 
 export class BookProfile extends Component {
 
@@ -14,7 +15,7 @@ export class BookProfile extends Component {
         super(props);
 
         let splitedPath = window.location.pathname.split("/");
-        let bookId = 1;
+        let bookId = defaultBookId;
         if(splitedPath.length === 3) bookId = parseInt(splitedPath[2]);
 
         this.state = {
