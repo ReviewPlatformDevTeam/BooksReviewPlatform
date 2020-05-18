@@ -4,6 +4,7 @@ import { Card } from 'antd';
 import './BookProfile.css';
 import Rater from 'react-rater';
 import { withRouter } from "react-router-dom";
+import defaultBook from '../pictures/bookSmile.png';
 
 const { Meta } = Card;
 
@@ -27,8 +28,11 @@ export class BookProfile extends Component {
     }
 
     loadBookData() {
-        let bookData = Object.keys(data).filter(item => { return data[item].id === this.state.bookId });
-        this.setState({bookData: data[bookData[0]]})
+        let bookData = Object.keys(data).filter(item => { return data[item].id === this.state.bookId })[0];
+        bookData = data[bookData];
+
+        if(bookData.image.length === 0) bookData.image = defaultBook;
+        this.setState({bookData: bookData})
     }
 
     createBookCard = () => {
