@@ -21,6 +21,9 @@ public class BookDto {
     @NotBlank
     private String author;
 
+    @NotBlank
+    private String category;
+
     @DateTimeFormat(pattern = DateResources.dateFormat)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DateResources.dateFormat, timezone = JsonFormat.DEFAULT_TIMEZONE)
     private Date releaseDate;

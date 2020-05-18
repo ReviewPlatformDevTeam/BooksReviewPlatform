@@ -1,5 +1,6 @@
 package com.uj.projects.booksplatform.book.entity;
 
+import com.uj.projects.booksplatform.category.entity.Category;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,5 +26,9 @@ public class Book {
 
     @Column(name = "release")
     private String releaseDate;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinColumn(name = "category_id")
+    private Category category;
 
 }
