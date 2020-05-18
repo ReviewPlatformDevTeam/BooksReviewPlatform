@@ -22,7 +22,10 @@ class CustomLayout extends React.Component{
 
     setMenu() {
         let authorizedMenuPaths = ['/signedin', '/booksList'];
-        let type = authorizedMenuPaths.includes(window.location.pathname) ? "authorized": "non-authorized";
+        let type = authorizedMenuPaths.includes(window.location.pathname)
+            || window.location.pathname.startsWith("/book")
+            || window.location.pathname.startsWith("/author")
+            ? "authorized": "non-authorized";
 
         if (type === "authorized") this.iconPath = '/signedin';
         else this.iconPath = '/';
@@ -103,7 +106,7 @@ class CustomLayout extends React.Component{
                 </div>
                 <this.renderMenu />
             </Header>
-            <Content style={{ padding: '0 0px', background: 'none', paddingTop: '64px', height: "100%" }}>
+            <Content style={{ padding: '0 0px', backgroundColor: 'white', paddingTop: '64px', height: "100%" }}>
                 <div>
                 {this.props.children}
                 </div>
