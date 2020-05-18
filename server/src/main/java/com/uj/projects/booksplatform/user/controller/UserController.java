@@ -42,7 +42,6 @@ public class UserController {
     @PostMapping("/users")
     public UserDto registerUser(@Valid @RequestBody UserDto userDto){
         User user = userMapper.userDtoToUser(userDto);
-        System.out.println(user.getPassword());
         User createdUser = userService.createUser(user);
         return userMapper.userToUserDto(createdUser);
     }

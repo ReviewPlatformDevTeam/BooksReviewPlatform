@@ -2,7 +2,6 @@ package com.uj.projects.booksplatform.category.controller;
 
 import com.uj.projects.booksplatform.category.entity.Category;
 import com.uj.projects.booksplatform.category.service.CategoryService;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
