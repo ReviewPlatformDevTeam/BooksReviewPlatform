@@ -14,7 +14,7 @@ export class BookProfile extends Component {
 
         let splitedPath = window.location.pathname.split("/");
         let bookId = 1;
-        if(splitedPath.length == 3) bookId = parseInt(splitedPath[2]);
+        if(splitedPath.length === 3) bookId = parseInt(splitedPath[2]);
 
         this.state = {
             bookId: bookId,
