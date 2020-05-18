@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import data from './books.json';
+import data from '../Mocks/books.json';
 import './BooksList.css';
 import Rater from 'react-rater';
 import 'react-rater/lib/react-rater.css';
+import { withRouter } from "react-router-dom";
 
 
 class BooksList extends Component {
@@ -11,7 +12,7 @@ class BooksList extends Component {
     render(){
 
         const carNode = Object.keys(data).map(item =>
-            <span key={data[item].id}>
+            <span key={data[item].id} onClick={ e => this.props.history.push(`/book/${data[item].id}`) } >
             <div className="BookContainer">
 
                 <div className="imageContainer">
@@ -39,4 +40,4 @@ class BooksList extends Component {
     );
     }
 }
-export default BooksList;
+export default withRouter(BooksList);

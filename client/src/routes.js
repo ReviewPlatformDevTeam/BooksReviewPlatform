@@ -5,6 +5,7 @@ import MainView from './Main/MainView';
 import RegistrationView from './Authorization/RegistrationView';
 import PasswordResetView from './Authorization/PasswordResetView';
 import BooksList from './BooksList/BooksList';
+import BookProfile from './BookProfile/BookProfile';
 
 const BaseRouter = () => (
    <Switch>
@@ -15,6 +16,8 @@ const BaseRouter = () => (
        <Route path="/resetPassword" component={PasswordResetView} />
        <Route path="/signedout" component={MainView} />
        <Route path="/booksList" component={BooksList} />
+       <Route path="/book" component={BookProfile} />
+       <Route path="/author" />
        <Route path="/" component={MainView} />
 
    </Switch>
