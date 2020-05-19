@@ -23,32 +23,30 @@ public class UserController {
     private final LoginService loginService;
     private final UserService userService;
     private final PasswordResetService passwordResetService;
-    private final UserMapper userMapper;
 
     @Autowired
-    public UserController(LoginService loginService, UserService userService, PasswordResetService passwordResetService, UserMapper userMapper) {
+    public UserController(LoginService loginService, UserService userService, PasswordResetService passwordResetService) {
         this.loginService = loginService;
         this.userService = userService;
         this.passwordResetService = passwordResetService;
-        this.userMapper = userMapper;
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/login")
-    public LoginResponse Login(@Valid@RequestBody LoginRequest loginRequest) {
+    public LoginResponse Login(@Valid@RequestBody LoginRequest loginRequest){
         LoginResult result = loginService.Login(loginRequest.getUsername(), loginRequest.getPassword());
-       return new LoginResponse(result.isSuccess(), result.getToken());
-    }
-    @PostMapping("/users")
-    public UserDto registerUser(@Valid @RequestBody UserDto userDto){
-        User user = userMapper.userDtoToUser(userDto);
-        User createdUser = userService.createUser(user);
-        return userMapper.userToUserDto(createdUser);
+        return new LoginResponse(result.isSuccess(), result.getToken());
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @PostMapping(value = "/resetPassword")
-    public PasswordResetResponse ResetPassword(@RequestBody PasswordResetRequest request){
+    @PostMapping("/users")
+    public User registerUser(@Valid @RequestBody User user){
+        return userService.createUser(user);
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @PostMapping("/resetPassword")
+    public PasswordResetResponse ResetPassword(@Valid @RequestBody PasswordResetRequest request){
         boolean result = passwordResetService.resetPassword(request.getEmail());
         return new PasswordResetResponse(result);
     }

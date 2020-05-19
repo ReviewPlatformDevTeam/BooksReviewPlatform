@@ -35,4 +35,6 @@ public class BookDto {
     @NotNull
     @PositiveOrZero
     private Integer numOfReviews;
+
+    String photoUrl;
 }
