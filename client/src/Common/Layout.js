@@ -21,7 +21,7 @@ class CustomLayout extends React.Component{
     }
 
     setMenu() {
-        let authorizedMenuPaths = ['/signedin', '/booksList'];
+        let authorizedMenuPaths = ['/signedin', '/booksList', '/profile'];
         let type = authorizedMenuPaths.includes(window.location.pathname)
             || window.location.pathname.startsWith("/book")
             || window.location.pathname.startsWith("/author")
@@ -73,7 +73,7 @@ class CustomLayout extends React.Component{
                 <Menu.Item
                     key="profile"
                     style={{float: 'center', marginLeft: '2%'}}>
-                    <Link to="/signedin"><UserOutlined />Profile</Link>
+                    <Link to="/profile"><UserOutlined />Profile</Link>
                 </Menu.Item>
                 <Menu.Item
                     key="signout"
