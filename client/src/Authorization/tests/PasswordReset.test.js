@@ -1,6 +1,8 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { PasswordReset } from "../PasswordReset/PasswordReset";
+import { authService } from "../_auth-services/authentication";
+
 
 describe('PasswordReset', () => {
 
@@ -22,8 +24,8 @@ describe('PasswordReset', () => {
     });
 
     test('should call reset function with email and display alert about success', async () => {
-        const mockFetchPromise = Promise.resolve({type: 'opaque'});
-        global.fetch = jest.fn().mockImplementation(() => mockFetchPromise);
+        const mockFetchPromise = Promise.resolve({success: true});
+        authService.reset = jest.fn().mockImplementation(() => mockFetchPromise);
 
         await wrapper.instance().resetHandler({preventDefault: jest.fn()});
         expect(global.alert).toHaveBeenCalledTimes(1);
@@ -31,8 +33,8 @@ describe('PasswordReset', () => {
     });
 
     test('should call reset function with email and display alert about fail', async () => {
-        const mockFetchPromise = Promise.resolve({type: 'not ok'});
-        global.fetch = jest.fn().mockImplementation(() => mockFetchPromise);
+        const mockFetchPromise = Promise.resolve({success: false});
+        authService.reset = jest.fn().mockImplementation(() => mockFetchPromise);
 
         await wrapper.instance().resetHandler({preventDefault: jest.fn()});
         expect(global.alert).toHaveBeenCalledTimes(1);
@@ -40,12 +42,12 @@ describe('PasswordReset', () => {
     });
 
     test('should call reset function with email and display alert about fail when status 404', async () => {
-        const mockFetchPromise = Promise.resolve({type: 'not ok', status: '404'});
-        global.fetch = jest.fn().mockImplementation(() => mockFetchPromise);
+        const mockFetchPromise = Promise.resolve({success: false, status: '404'});
+        authService.reset = jest.fn().mockImplementation(() => mockFetchPromise);
 
         await wrapper.instance().resetHandler({preventDefault: jest.fn()});
         expect(global.alert).toHaveBeenCalledTimes(1);
-        expect(global.alert).toHaveLastReturnedWith("Page not found");
+        expect(global.alert).toHaveLastReturnedWith("User not found");
     });
 
 });
