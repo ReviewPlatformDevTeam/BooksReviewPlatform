@@ -17,7 +17,6 @@ import com.uj.projects.booksplatform.user.service.UserService;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.testng.Assert;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -49,11 +48,9 @@ class UserControllerTest {
         user.setEmail(Any.string());
         user.setUsername(Any.string());
 
-        UserDto requestBody = new UserDto();
-        requestBody.setPassword(Any.string());
-        requestBody.setEmail(Any.string());
-        requestBody.setUsername(Any.string());
-
+        UserDto requestBody = mapUserToUserDto(user);
+        when(userMapper.userDtoToUser(requestBody)).thenReturn(user);
+        when(userMapper.userToUserDto(user)).thenReturn(requestBody);
         given(userService.createUser(user)).willReturn(user);
 
         // Act
@@ -99,5 +96,21 @@ class UserControllerTest {
         // Asserts
         verify(passwordResetService, times(1)).resetPassword(email);
         Assert.assertNotNull(response);
+    }
+
+    UserDto mapUserToUserDto(User user){
+        UserDto userDto = new UserDto();
+        userDto.setUsername(user.getUsername());
+        userDto.setEmail(user.getEmail());
+        userDto.setPassword(user.getPassword());
+        return userDto;
+    }
+
+    User mapUserDtoToUser(UserDto userDto){
+        User user = new User();
+        user.setUsername(userDto.getUsername());
+        user.setEmail(userDto.getEmail());
+        user.setPassword(userDto.getPassword());
+        return user;
     }
 }

@@ -39,6 +39,7 @@ public class UserServiceTests {
         User user = new User();
         user.setEmail(email);
         when(userRepository.findUserByEmail(email)).thenReturn(user);
+        when(passwordBuilderWrapper.generatePassword()).thenReturn(expectedPassword);
 
         // Act
         String actualNewPassword = sut.resetPassword(email);
