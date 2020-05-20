@@ -152,7 +152,7 @@ export class BookProfile extends Component {
                 <br />
                 <div style={{fontSize: 'x-large'}}>
                     <Rater total={5} rating={this.state.bookData.score} interactive={false}/>
-                    {this.state.bookData.numOfReviews} rated
+                    {this.state.bookData.numOfReviews} rating(s)
                 </div>
             </Card>
         );
