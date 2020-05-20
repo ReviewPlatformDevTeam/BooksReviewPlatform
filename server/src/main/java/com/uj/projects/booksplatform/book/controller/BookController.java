@@ -1,43 +1,66 @@
 package com.uj.projects.booksplatform.book.controller;
 
 import com.uj.projects.booksplatform.book.entity.Book;
-import com.uj.projects.booksplatform.book.repository.BookRepository;
+import com.uj.projects.booksplatform.book.service.BookService;
+import com.uj.projects.booksplatform.book.dto.BookDto;
+import com.uj.projects.booksplatform.book.mapper.BookMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping("/books")
 public class BookController {
 
+    private final BookService bookService;
+    private final BookMapper bookMapper;
+
     @Autowired
-    BookRepository bookRepository;
-
-    @GetMapping("/books")
-    public List<Book> getBooks(){
-        return bookRepository.findAll();
+    BookController(BookService bookService, BookMapper bookMapper){
+        this.bookService = bookService;
+        this.bookMapper = bookMapper;
     }
 
-    @GetMapping("/books/{id}")
-    public Book getBook(@PathVariable("id") Integer id){
-        return bookRepository.findById(id).get();
+    @GetMapping
+    public List<BookDto> getBooks(){
+        return bookService.getAllBooks().stream()
+                .map(bookMapper::bookToBookDto)
+                .map(this::mockNotExistingProperties).collect(Collectors.toList());
     }
 
-    @PostMapping("/books")
-    public Book createBook(@RequestBody Book book){
-        return bookRepository.save(book);
+    @GetMapping("/{id}")
+    public BookDto getBook(@PathVariable("id") Integer id){
+        Book book = bookService.getBookById(id);
+        BookDto bookDto = bookMapper.bookToBookDto(book);
+        return mockNotExistingProperties(bookDto);
     }
 
-    @PostMapping("/books/{id}")
-    public Book updateBook(@RequestBody Book book, @PathVariable("id") Integer id){
+    @PostMapping
+    public BookDto createBook(@Valid @RequestBody BookDto bookDto){
+        Book book = bookMapper.bookDtoToBook(bookDto);
+        Book createdBook = bookService.createBook(book);
+        return mockNotExistingProperties(bookMapper.bookToBookDto(createdBook));
+    }
+
+    @PostMapping("/{id}")
+    public BookDto updateBook(@RequestBody BookDto bookDto, @PathVariable("id") Integer id){
+        Book book = bookMapper.bookDtoToBook(bookDto);
         book.setId(id);
-        return bookRepository.save(book);
+        Book updatedBook = bookService.updateBook(book);
+        return mockNotExistingProperties(bookMapper.bookToBookDto(updatedBook));
     }
 
-    @DeleteMapping("/books/{id}")
+    @DeleteMapping("/{id}")
     public void deleteBook(@PathVariable("id") Integer id){
-        Book book = new Book();
-        book.setId(id);
-        bookRepository.delete(book);
+        bookService.deleteBook(id);
+    }
+
+    private BookDto mockNotExistingProperties(BookDto bookDto){
+        bookDto.setScore(5.0F);
+        bookDto.setNumOfReviews(123);
+        return bookDto;
     }
 }
