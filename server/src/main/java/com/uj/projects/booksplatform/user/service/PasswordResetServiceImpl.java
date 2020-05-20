@@ -1,5 +1,6 @@
 package com.uj.projects.booksplatform.user.service;
 
+import com.uj.projects.booksplatform.error.exception.NotFoundException;
 import com.uj.projects.booksplatform.user.EmailResources;
 import com.uj.projects.booksplatform.user.service.email.EmailSender;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +19,11 @@ public class PasswordResetServiceImpl implements PasswordResetService {
     }
 
     @Override
-    public boolean resetPassword(String email) throws UserNotFoundException {
+    public boolean resetPassword(String email) {
         String newPassword;
         try {
             newPassword = userService.resetPassword(email);
-        } catch (UserNotFoundException e) {
+        } catch (NotFoundException e) {
             System.out.print("Could not find user with email: " + email);
             throw e;
         }

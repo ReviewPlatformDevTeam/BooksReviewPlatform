@@ -1,7 +1,7 @@
 package com.uj.projects.booksplatform.user.service;
 
 import autofixture.publicinterface.Any;
-import com.uj.projects.booksplatform.error.exception.DefaultRuntimeException;
+import com.uj.projects.booksplatform.error.exception.AlreadyExistsException;
 import com.uj.projects.booksplatform.user.entity.User;
 import com.uj.projects.booksplatform.user.repository.UserRepository;
 import com.uj.projects.booksplatform.user.validator.UserValidator;
@@ -32,7 +32,7 @@ public class UserValidatorTest {
         given(userRepository.findUserByUsername(username)).willReturn(user);
 
         // Act && Assert
-        assertThrows(DefaultRuntimeException.class, () -> { userValidator.validateIfUserAlreadyRegistered(username, email);});
+        assertThrows(AlreadyExistsException.class, () ->  userValidator.validateIfUserAlreadyRegistered(username, email));
     }
 
     @Test
@@ -44,6 +44,6 @@ public class UserValidatorTest {
         given(userRepository.findUserByEmail(email)).willReturn(user);
 
         // Act && Assert
-        assertThrows(DefaultRuntimeException.class, () -> { userValidator.validateIfUserAlreadyRegistered(username, email);});
+        assertThrows(AlreadyExistsException.class, () ->  userValidator.validateIfUserAlreadyRegistered(username, email));
     }
 }
