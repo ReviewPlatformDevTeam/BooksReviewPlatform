@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import bookMock from '../Mocks/books.json';
+import userMock from '../Mocks/user.json';
 import reviewsMock from '../Mocks/reviews.json';
 import { Card, Comment, List, Layout, Form, Button, Input } from 'antd';
 import './BookProfile.css';
@@ -51,7 +52,8 @@ export class BookProfile extends Component {
 
     handleSubmit = () => {
         if (!this.state.value) {
-          return;
+            alert("Review can't be empty")
+            return;
         }
     
         this.setState({
@@ -65,7 +67,7 @@ export class BookProfile extends Component {
                 score: 0,
                 reviews: [
                 {
-                    author: 'Username',
+                    author: userMock.username,
                     date: moment().format('YYYY-MM-DD'),
                     review: this.state.value,
                     score: this.state.score
