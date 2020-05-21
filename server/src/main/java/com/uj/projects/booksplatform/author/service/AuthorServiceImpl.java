@@ -29,7 +29,7 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public void delete(Integer id) {
-        authorRepository.delete(id);
+        authorRepository.deleteById(id);
     }
 
     @Override
