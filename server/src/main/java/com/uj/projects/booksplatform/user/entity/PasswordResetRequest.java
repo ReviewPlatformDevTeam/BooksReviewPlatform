@@ -5,10 +5,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class PasswordResetRequest {
+    @NotBlank(message = "Email cannot be empty")
+    @Email(message = "Invalid email address format")
     private String email;
 }

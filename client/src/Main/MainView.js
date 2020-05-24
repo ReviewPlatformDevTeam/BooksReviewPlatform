@@ -26,6 +26,9 @@ class MainView extends Component{
             <QueueAnim delay={400} >
               <div key="a">
                 <img src={logo} alt='logo' style={{ transform: "translate(-50%, 30%)", position: "absolute" }} />
+                <form action="">
+                  <input type="text" name="" id=""/>
+                </form>
               </div>
             </QueueAnim>
             <DownOutlined style={{ fontSize: "30px", top: "90%", color: "white", position: "absolute" }}/>

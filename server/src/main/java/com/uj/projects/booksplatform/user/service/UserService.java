@@ -10,5 +10,7 @@ public interface UserService {
     User createUser(User user);
     void deleteUser(Integer id);
     User updateUser(User user);
-    String resetPassword(String Email) throws UserNotFoundException;
+    String resetPassword(String Email);
+    User getUserByEmail(String email);
+    User getUserByUsername(String username);
 }

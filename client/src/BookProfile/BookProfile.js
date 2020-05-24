@@ -4,8 +4,10 @@ import { Card } from 'antd';
 import './BookProfile.css';
 import Rater from 'react-rater';
 import { withRouter } from "react-router-dom";
+import defaultBook from '../pictures/bookSmile.png';
 
 const { Meta } = Card;
+const defaultBookId = 1;
 
 export class BookProfile extends Component {
 
@@ -13,8 +15,10 @@ export class BookProfile extends Component {
         super(props);
 
         let splitedPath = window.location.pathname.split("/");
-        let bookId = 1;
-        if(splitedPath.length === 3) bookId = parseInt(splitedPath[2]);
+        let bookId = defaultBookId;
+        if(splitedPath.length === 3) {
+            bookId = parseInt(splitedPath[2]);
+        }
 
         this.state = {
             bookId: bookId,
@@ -27,8 +31,13 @@ export class BookProfile extends Component {
     }
 
     loadBookData() {
-        let bookData = Object.keys(data).filter(item => { return data[item].id === this.state.bookId });
-        this.setState({bookData: data[bookData[0]]})
+        let bookData = Object.keys(data).filter(item => { return data[item].id === this.state.bookId })[0];
+        bookData = data[bookData];
+
+        if(bookData.image.length === 0) {
+            bookData.image = defaultBook;
+        }
+        this.setState({bookData: bookData})
     }
 
     createBookCard = () => {
