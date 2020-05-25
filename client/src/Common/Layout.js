@@ -86,6 +86,11 @@ class CustomLayout extends React.Component{
                     style={{float: 'center', marginLeft: '2%'}}>
                     <Link to="/booksList">Books</Link>
                 </Menu.Item>
+                <Menu.Item
+                    key="authorsList"
+                    style={{float: 'center', marginLeft: '2%'}}>
+                    <Link to="/authorsList">Authors</Link>
+                </Menu.Item>
             </Menu>
         );
     }
