@@ -1,14 +1,23 @@
 import React, { Component } from "react";
-import bookMock from '../Mocks/books.json';
 import userMock from '../Mocks/user.json';
 import reviewsMock from '../Mocks/reviews.json';
-import { Card, Comment, List, Layout, Form, Button, Input } from 'antd';
+import { Card, Comment, List, Layout, Form, Button, Input, Spin } from 'antd';
 import './BookProfile.css';
 import Rater from 'react-rater';
 import { withRouter } from "react-router-dom";
 import defaultBook from '../pictures/bookSmile.png';
 import moment from 'moment';
+import { bookProfileService } from './services/BookProfileService';
 
+// TODO - delete after field implemented on backend
+const mockDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
+                         "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure " +
+                         "dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non " +
+                         "proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur " +
+                         "adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud " +
+                         "exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate " +
+                         "velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia " +
+                         "deserunt mollit anim id est laborum. ";
 const { Meta } = Card;
 const { TextArea } = Input;
 const defaultBookId = 1;
@@ -30,7 +39,8 @@ export class BookProfile extends Component {
             reviews: undefined,
             submitting: false,
             value: '',
-            score: 0
+            score: 0,
+            loading: true
         }
     }
 
@@ -96,13 +106,16 @@ export class BookProfile extends Component {
     }
 
     loadBookData() {
-        let bookData = Object.keys(bookMock).filter(item => { return bookMock[item].id === this.state.bookId })[0];
-        bookData = bookMock[bookData];
+        bookProfileService.getBookById(this.state.bookId).then(resp => 
+            {
+                let bookData = resp;
 
-        if(bookData.image.length === 0) {
-            bookData.image = defaultBook;
-        }
-        this.setState({bookData: bookData})
+                if(bookData.photoUrl === null || bookData.photoUrl.length === 0) {
+                    bookData.photoUrl = defaultBook;
+                }
+                this.setState({bookData: bookData, loading: false});
+            }
+        );
     }
 
     loadReviews() {
@@ -113,7 +126,7 @@ export class BookProfile extends Component {
         return (
             <Card
                 className='bookCard'
-                cover={<img alt="" src={this.state.bookData.image} />}>
+                cover={<img alt="" src={this.state.bookData.photoUrl} />}>
                 <Meta title={this.state.bookData.title}
                       description={
                           <i onClick={e => this.props.history.push('/author')} className='authorName'>
@@ -133,7 +146,7 @@ export class BookProfile extends Component {
                     overflow: "auto"
                 }}
             >
-                <p>{this.state.bookData.description}</p>
+                <p>{mockDescription}</p>
             </Card>
         );
     }
@@ -153,7 +166,7 @@ export class BookProfile extends Component {
                 <strong>Release date: </strong>{this.state.bookData.releaseDate}<br />
                 <br />
                 <div style={{fontSize: 'x-large'}}>
-                    <Rater total={5} rating={this.state.bookData.score} interactive={false}/>
+                    <Rater total={5} rating={parseFloat(this.state.bookData.score)} interactive={false}/>
                     {this.state.bookData.numOfReviews} rating(s)
                 </div>
             </Card>
@@ -204,29 +217,31 @@ export class BookProfile extends Component {
 
     render() {
         return (
-            <div className="bookProfile" style={{height: "100vh"}}>
-                <Layout style={{paddingTop: 50, backgroundColor: 'white'}} className='bookLayout'>   
-                    {
-                        this.state.bookData ?
-                            <div>
-                                {this.createBookCard()}
-                                <div className='bookInfo'>
-                                    {this.createDescriptionCard()}
-                                    {this.createDetailsCard()}
-                                </div>
-                            </div>: null
-                    }
-                </Layout>
-                <div className='commentInput'>{this.commentInput()}</div>
-                <Layout style={{backgroundColor: 'white'}}>
-                    { 
-                        this.state.reviews  ? 
-                            <div className='commentSection'>
-                                {this.createReviewComponent()}
-                            </div>: null
-                    }
-                </Layout>
-            </div>
+            <Spin size="large" spinning={this.state.loading} >
+                <div className="bookProfile" style={{height: "100vh"}}>
+                    <Layout style={{paddingTop: 50, backgroundColor: 'white'}} className='bookLayout'>   
+                        {
+                            this.state.bookData ?
+                                <div>
+                                    {this.createBookCard()}
+                                    <div className='bookInfo'>
+                                        {this.createDescriptionCard()}
+                                        {this.createDetailsCard()}
+                                    </div>
+                                </div>: null
+                        }
+                    </Layout>
+                    <div className='commentInput'>{this.commentInput()}</div>
+                    <Layout style={{backgroundColor: 'white'}}>
+                        { 
+                            this.state.reviews  ? 
+                                <div className='commentSection'>
+                                    {this.createReviewComponent()}
+                                </div>: null
+                        }
+                    </Layout>
+                </div>
+            </Spin>
         );
     }
 }
