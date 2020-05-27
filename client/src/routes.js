@@ -7,6 +7,7 @@ import PasswordResetView from './Authorization/PasswordResetView';
 import BooksList from './BooksList/BooksList';
 import BookProfile from './BookProfile/BookProfile';
 import UserProfile from './UserProfile/UserProfile';
+import AuthorsList from './AuthorsList/AuthorsList';
 
 const BaseRouter = () => (
    <Switch>
@@ -18,6 +19,7 @@ const BaseRouter = () => (
        <Route path="/signedout" component={MainView} />
        <Route path="/booksList" component={BooksList} />
        <Route path="/book" component={BookProfile} />
+       <Route path="/authorsList" component={AuthorsList} />
        <Route path="/author" />
        <Route path="/profile" component={UserProfile} />
        <Route path="/" component={MainView} />
