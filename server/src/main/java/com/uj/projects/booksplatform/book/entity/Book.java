@@ -23,7 +23,7 @@ public class Book {
     private String title;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-    @Column(name = "author_id")
+    @JoinColumn(name = "author_id")
     private Author author;
 
     @Column(name = "release")

@@ -1,6 +1,5 @@
 package com.uj.projects.booksplatform.author.entity;
 
-import com.uj.projects.booksplatform.category.entity.Category;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
