@@ -4,6 +4,7 @@ import com.uj.projects.booksplatform.book.entity.Book;
 import com.uj.projects.booksplatform.book.service.BookService;
 import com.uj.projects.booksplatform.book.dto.BookDto;
 import com.uj.projects.booksplatform.book.mapper.BookMapper;
+import com.uj.projects.booksplatform.review.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,11 +18,13 @@ public class BookController {
 
     private final BookService bookService;
     private final BookMapper bookMapper;
+    private final ReviewService reviewService;
 
     @Autowired
-    BookController(BookService bookService, BookMapper bookMapper){
+    BookController(BookService bookService, BookMapper bookMapper, ReviewService reviewService){
         this.bookService = bookService;
         this.bookMapper = bookMapper;
+        this.reviewService = reviewService;
     }
 
     @GetMapping
@@ -60,7 +63,7 @@ public class BookController {
 
     private BookDto mockNotExistingProperties(BookDto bookDto){
         bookDto.setScore(5.0F);
-        bookDto.setNumOfReviews(123);
+        bookDto.setNumOfReviews(reviewService.getNumberOfReviewsByBook(bookDto.getId()));
         return bookDto;
     }
 }
