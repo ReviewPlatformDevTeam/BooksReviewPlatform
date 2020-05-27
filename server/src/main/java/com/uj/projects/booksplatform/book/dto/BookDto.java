@@ -18,7 +18,7 @@ public class BookDto {
     @NotBlank
     private String title;
 
-    @NotBlank
+    @NotNull
     private Integer author;
 
     @NotBlank
