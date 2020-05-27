@@ -83,10 +83,10 @@ export class BookProfile extends Component {
                 <strong>Author: </strong>{this.state.bookData.author}<br />
                 <strong>Release date: </strong>{this.state.bookData.releaseDate}<br />
                 <br />
-                <p style={{fontSize: 'x-large'}}>
+                <div style={{fontSize: 'x-large'}}>
                     <Rater total={5} rating={this.state.bookData.score} interactive={false}/>
                     {this.state.bookData.numOfReviews} rated
-                </p>
+                </div>
             </Card>
         );
     }

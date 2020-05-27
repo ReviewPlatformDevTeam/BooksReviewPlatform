@@ -3,9 +3,12 @@
     "id": 1,
     "author": "J. K. Rowling",
     "books": [
-      "Harry Potter. The Philosopher's Stone",
-      "Harry Potter. The Order of the Phoenix",
-      "Harry Potter. The Goblet of Fire"
+      {"bid": 1,
+        "title": "Harry Potter. The Philosopher's Stone"},
+      {"bid": 4,
+        "title": "Harry Potter. The Goblet of Fire"},
+      {"bid": 5,
+        "title": "Harry Potter. The Order of the Phoenix"}
     ],
     "description": "Joanne Rowling (born 31 July 1965), better known by her pen name J. K. Rowling, is a British author, film producer, television producer, screenwriter, and philanthropist. She is best known for writing the Harry Potter fantasy series, which has won multiple awards and sold more than 500 million copies,[2][3] becoming the best-selling book series in history.[4] The books are the basis of a popular film series, over which Rowling had overall approval on the scripts[5] and was a producer on the final films.[6] She also writes crime fiction under the name Robert Galbraith.\n\nBorn in Yate, Gloucestershire, Rowling was working as a researcher and bilingual secretary for Amnesty International when she conceived the idea for the Harry Potter series while on a delayed train from Manchester to London in 1990.[7] The seven-year period that followed saw the death of her mother, birth of her first child, divorce from her first husband, and relative poverty until the first novel in the series, Harry Potter and the Philosopher's Stone, was published in 1997. There were six sequels, of which the last, Harry Potter and the Deathly Hallows, was released in 2007. Since then, Rowling has written five books for adult readers: The Casual Vacancy (2012) and—under the pseudonym Robert Galbraith—the crime fiction Cormoran Strike series, which consists of The Cuckoo's Calling (2013), The Silkworm (2014), Career of Evil (2015), and Lethal White (2018).[8] ",
     "photo": "https://vignette.wikia.nocookie.net/harrypotter/images/9/99/Joanne_Rowling_2018.jpg/revision/latest?cb=20181024170704&path-prefix=ru"
@@ -13,28 +16,39 @@
   "author2": {
     "id": 2,
     "author": "Ivan Turgenev",
-    "books": "Fathers and Sons",
+    "books": [{"bid": 2,
+  "title": "Fathers and Sons"
+}],
     "description": "Ivan Sergeyevich Turgenev ( November 9 [O.S. October 28] 1818 – September 3, 1883) was a Russian novelist, short story writer, poet, playwright, translator and popularizer of Russian literature in the West.\n\nHis first major publication, a short story collection entitled A Sportsman's Sketches (1852), was a milestone of Russian realism, and his novel Fathers and Sons (1862) is regarded as one of the major works of 19th-century fiction. ",
     "photo": "https://i1.mybook.io/p/x256/author_photos/4f/62/4f624ce4-825f-450d-9ed9-8ca017fa1ee6.jpg?v2"
   },
   "author3": {
     "id": 3,
     "author": "Some Author",
-    "books": "Book 1\nBook 2",
+    "books": [
+      {"bid": 1,
+        "title": "Harry Potter. The Philosopher's Stone"}
+    ],
     "description": "Lorem ipsum dolor",
     "photo": ""
   },
   "author4": {
     "id": 4,
     "author": "Robert T. Kiyosaki",
-    "books": "Rich Dad Poor Dad: What the Rich Teach Their Kids About Money That the Poor and Middle Class Do Not!\nRich Dad Poor Dad: What the Rich Teach Their Kids About Money That the Poor and Middle Class Do Not!",
-    "description": "Robert Toru Kiyosaki (born April 8, 1947) is an American businessman and author. Kiyosaki is the founder of Rich Global LLC and the Rich Dad Company, a private financial education company that provides personal finance and business education to people through books and videos.[2] The company's main revenues come from franchisees of the Rich Dad seminars that are conducted by independent individuals using Kiyosaki's brand name for a fee.[citation needed] He is also the creator of the Cashflow board and software games to educate adults and children about business and financial concepts. ",
+    "books": [
+      {"bid": 3,
+        "title": "Rich Dad Poor Dad: What the Rich Teach Their Kids About Money That the Poor and Middle Class Do Not!\nRich Dad Poor Dad: What the Rich Teach Their Kids About Money That the Poor and Middle Class Do Not!"
+      }
+    ],   "description": "Robert Toru Kiyosaki (born April 8, 1947) is an American businessman and author. Kiyosaki is the founder of Rich Global LLC and the Rich Dad Company, a private financial education company that provides personal finance and business education to people through books and videos.[2] The company's main revenues come from franchisees of the Rich Dad seminars that are conducted by independent individuals using Kiyosaki's brand name for a fee.[citation needed] He is also the creator of the Cashflow board and software games to educate adults and children about business and financial concepts. ",
     "photo": "https://instagram-star.com/uploads/posts/2019-12/medium/1576523168_robert.jpg"
   },
   "author5": {
     "id": 5,
     "author": "Some Author",
-    "books": "Book 1",
+    "books": [
+      {"bid": 1,
+        "title": "Harry Potter. The Philosopher's Stone"}
+    ],
     "description": "Lorem ipsum dolor",
     "photo": ""
   },
@@ -42,9 +56,10 @@
     "id": 6,
     "author": "Henryk Sienkiewicz",
     "books": [
-      "Quo Vadis",
-      "Knights of the Teutonic Order ",
-      "With Fire and Sword"
+      {"bid": 6,
+        "title": "Quo Vadis"},
+      {"bid": 7,
+        "title": "With Fire and Sword"}
     ],
     "description" : "Henryk Adam Aleksander Pius Sienkiewicz (5 May 1846 – 15 November 1916), also known by the pseudonym Litwos [ˈlitfɔs], was a Polish journalist, novelist and Nobel Prize laureate. He is best remembered for his historical novels, especially for his internationally known best-seller Quo Vadis (1896).Born into an impoverished Polish noble family in Russian-ruled Congress Poland, in the late 1860s he began publishing journalistic and literary pieces. In the late 1870s he traveled to the United States, sending back travel essays that won him popularity with Polish readers. In the 1880s he began serializing novels that further increased his popularity. He soon became one of the most popular Polish writers of the turn of the 19th and 20th centuries, and numerous translations gained him international renown, culminating in his receipt of the 1905 Nobel.",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/2/29/Henryk_Sienkiewicz_1905.jpg"
@@ -52,7 +67,9 @@
   "author7": {
     "id": 7,
     "author": "Some Author",
-    "books": "Book 4",
+    "books": [ {"bid": 6,
+      "title": "Quo Vadis"}
+    ],
     "description": "Lorem ipsum dolor......................................................",
     "photo": ""
   }
