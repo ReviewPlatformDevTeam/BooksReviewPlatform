@@ -6,17 +6,17 @@ const getBookById = (id) => {
     const url = `${API_URL}/books/${id}`;
 
     let singleBookHeaders = new Headers();
-    let singleBookData = {
-        method: 'GET',
-        headers: myHeaders,
-        redirect: 'follow',
-        mode: "cors",
-    };
-
     singleBookHeaders.append(
                             "Authorization", 
                             `Bearer ${commonService.getToken()}`
                             );
+
+    let singleBookData = {
+        method: 'GET',
+        headers: singleBookHeaders,
+        redirect: 'follow',
+        mode: "cors",
+    };
 
     return fetch(url, singleBookData)
         .then(response => commonService.checkStatus(response)).then(response => response.text())
