@@ -74,7 +74,7 @@ class Registration extends Component {
                                 required
                             />
                             <input
-                                type="text" pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+"
+                                type="text" pattern="[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+"
                                 title="ENTER A VALID Email ADDRESS. example@example.com"
                                 placeholder="E-mail"
                                 value={this.state.email}
