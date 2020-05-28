@@ -22,6 +22,9 @@ public class Book {
     @Column(name = "title")
     private String title;
 
+    @Column(name = "description")
+    private String description;
+
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "author_id")
     private Author author;
