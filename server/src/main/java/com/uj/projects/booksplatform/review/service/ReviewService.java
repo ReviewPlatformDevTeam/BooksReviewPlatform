@@ -11,5 +11,6 @@ public interface ReviewService {
     Review update(Review review);
     Review getById(Integer id);
     List<Review> getByBook(Integer id);
+    List<Review> getByUser(Integer id);
     Integer getNumberOfReviewsByBook(Integer bookId);
 }

@@ -7,12 +7,12 @@ insert into books (author, 'release', title, category_id) values ('J. R. R. Tolk
 insert into books (author, 'release', title, category_id) values ('Lucy Maud Montgomery', '1908-06-01', 'Anne of Green Gables', 2)
 
 
-insert into reviews (content, score, book_id) values ('Really great', 5, 1)
-insert into reviews (content, score, book_id) values ('Magnificent!', 5, 1)
-insert into reviews (content, score, book_id) values ('The best', 5, 2)
-insert into reviews (content, score, book_id) values ('My favourite', 5, 2)
-insert into reviews (content, score, book_id) values ('I like it', 4, 3)
-insert into reviews (content, score, book_id) values ('I dont like it', 1, 3)
+insert into reviews (content, score, book_id, user_id) values ('Really great', 5, 1, 1)
+insert into reviews (content, score, book_id, user_id) values ('Magnificent!', 5, 1, 2)
+insert into reviews (content, score, book_id, user_id) values ('The best', 5, 2, 1)
+insert into reviews (content, score, book_id, user_id) values ('My favourite', 5, 2, 3)
+insert into reviews (content, score, book_id, user_id) values ('I like it', 4, 3, 4)
+insert into reviews (content, score, book_id, user_id) values ('I dont like it', 1, 5, 5)
 
 -- password: 1234
 insert into users (username, password, email) values ('krystian', '$2a$10$NLnJWf3.ZQhXbUWja963s.Yc6/6GKSaOCsZ/Yvr1M6fqYKfKDnDxa', 'krystian@gmail.com')

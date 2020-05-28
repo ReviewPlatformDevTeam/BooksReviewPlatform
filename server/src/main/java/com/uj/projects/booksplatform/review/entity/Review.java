@@ -1,6 +1,7 @@
 package com.uj.projects.booksplatform.review.entity;
 
 import com.uj.projects.booksplatform.book.entity.Book;
+import com.uj.projects.booksplatform.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,4 +29,7 @@ public class Review {
     @JoinColumn(name = "book_id", nullable = false)
     private Book book;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 }

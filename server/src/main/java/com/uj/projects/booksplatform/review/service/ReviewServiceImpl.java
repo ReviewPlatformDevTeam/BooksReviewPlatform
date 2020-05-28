@@ -1,9 +1,12 @@
 package com.uj.projects.booksplatform.review.service;
 
 import com.uj.projects.booksplatform.book.entity.Book;
+import com.uj.projects.booksplatform.book.repository.BookRepository;
 import com.uj.projects.booksplatform.error.exception.NotFoundException;
 import com.uj.projects.booksplatform.review.entity.Review;
 import com.uj.projects.booksplatform.review.repository.ReviewRepository;
+import com.uj.projects.booksplatform.user.entity.User;
+import com.uj.projects.booksplatform.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,8 +17,14 @@ public class ReviewServiceImpl implements ReviewService {
 
     private ReviewRepository reviewRepository;
 
-    ReviewServiceImpl(ReviewRepository reviewRepository){
+    private BookRepository bookRepository;
+
+    private UserRepository userRepository;
+
+    ReviewServiceImpl(ReviewRepository reviewRepository, BookRepository bookRepository, UserRepository userRepository){
         this.reviewRepository = reviewRepository;
+        this.bookRepository = bookRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -49,9 +58,20 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public List<Review> getByBook(Integer id) {
-        Book book = new Book();
-        book.setId(id);
-        return reviewRepository.findReviewsByBook(book);
+        Optional<Book> book = bookRepository.findById(id);
+        if(!book.isPresent()){
+            throw new NotFoundException("Book with id: " + id + " not found");
+        }
+        return reviewRepository.findReviewsByBook(book.get());
+    }
+
+    @Override
+    public List<Review> getByUser(Integer id) {
+        Optional<User> user = userRepository.findById(id);
+        if(!user.isPresent()){
+            throw new NotFoundException("User with id: " + id + " not found");
+        }
+        return reviewRepository.findReviewsByUser(user.get());
     }
 
     @Override
