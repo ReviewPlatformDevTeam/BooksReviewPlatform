@@ -23,7 +23,7 @@ class BooksList extends Component {
                  <p><b><i>"{data[item].title}"</i></b></p>
                  <p><b><u>{data[item].author}</u></b> </p>
                  <p> {data[item].releaseDate}</p>
-                 <p><Rater total={5} rating={data[item].score} interactive={false}/>  {data[item].numOfReviews} rated</p>
+                 <div><Rater total={5} rating={data[item].score} interactive={false}/>  {data[item].numOfReviews} rating(s)</div>
                  <div className="descrContainer">
                      <div className="descr">{data[item].description} </div>
                      <div className="showMore">Show More</div>

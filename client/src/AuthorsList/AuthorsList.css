@@ -1,0 +1,45 @@
+.authorListContainer {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px 40px ;
+}
+.authorContainer {
+    width: 180px;
+    height: 300px;
+    border-radius: 30px;
+    -webkit-box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+    padding: 20px 15px 5px;
+    font-family: 'Poppins', sans-serif;
+    margin: 10px 8px ;
+    background-color: #fff;
+}
+.authorContainer:hover {
+    background-color: rgba(250, 250, 250, 0.8);
+    box-shadow: 3px 3px 10px #333;
+    border: 2px;
+}
+.authorContainer:focus {
+    outline: none;
+    box-shadow: 3px 3px 10px #333;
+    background: rgba(233,233,233,.7);
+}
+.photoContainer{
+    width: 150px;
+    height: 210px;
+    background-image: url("../pictures/authorDefault.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.photoContainer img{
+    width: 150px;
+    height: 210px;
+}
+.authorContainer p {
+    width: auto;
+    text-align: center;
+    float: center;
+    margin: 5px;
+    font-family: serif;
+    font-size: 18px;
+}

@@ -2,7 +2,7 @@ import React from 'react';
 import { Layout, Menu } from 'antd';
 import { Link, withRouter } from 'react-router-dom';
 import logo from '../pictures/Common_logo.png';
-import { HomeOutlined, UserOutlined, RiseOutlined } from '@ant-design/icons';
+import { HomeOutlined, UserOutlined, RiseOutlined, TeamOutlined, ReadOutlined } from '@ant-design/icons';
 import { authService } from "../Authorization/_auth-services/authentication";
 
 
@@ -84,7 +84,12 @@ class CustomLayout extends React.Component{
                 <Menu.Item
                     key="booksList"
                     style={{float: 'center', marginLeft: '2%'}}>
-                    <Link to="/booksList">Books</Link>
+                    <Link to="/booksList">< ReadOutlined />Books</Link>
+                </Menu.Item>
+                <Menu.Item
+                    key="authorsList"
+                    style={{float: 'center', marginLeft: '2%'}}>
+                    <Link to="/authorsList">< TeamOutlined />Authors</Link>
                 </Menu.Item>
             </Menu>
         );

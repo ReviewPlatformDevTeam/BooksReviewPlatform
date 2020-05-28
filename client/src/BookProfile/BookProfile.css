@@ -1,8 +1,7 @@
 .App .bookProfile .bookCard {
     box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
     width: 22vw;
-    position: absolute;
-    top: 130px;
+    position: relative;
     left: 10%;
     float: left;
 }
@@ -20,8 +19,7 @@
 }
 
 .App .bookInfo {
-    position: absolute;
-    top: 130px;
+    position: relative;
     right: 10%;
     float: right;
 }
@@ -32,4 +30,21 @@
 
 .authorName {
     text-decoration: underline;
+}
+
+.App .commentList {
+    text-align: left;
+}
+
+.App .commentSection {
+    position: relative;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 50px;
+}
+
+.App .commentInput {
+    padding-left: 100px;
+    padding-right: 100px;
+    text-align: left;
 }
