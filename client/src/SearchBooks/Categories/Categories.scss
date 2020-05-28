@@ -1,0 +1,33 @@
+.categories {
+    position: relative;
+    .categories-display {
+        position: absolute;
+        top: 80px;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+        background: #fff;
+        border-radius: 30px;
+        padding: 10px;
+        max-height: 300px;
+        transition: max-height .4s;
+
+        button {
+            color: #000;
+            margin: 0;
+            width: 100px;
+            height: 50px;
+            margin-top: 10px;
+            border-radius: 0;
+            padding: 0;
+            &:hover {
+                border-bottom: 2px solid #000;
+            }
+        }
+
+        &.hidden {
+            max-height: 0;
+            padding: 0;
+        }
+    }
+}

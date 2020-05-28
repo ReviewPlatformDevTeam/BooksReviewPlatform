@@ -1,0 +1,37 @@
+.categories {
+  position: relative;
+}
+
+.categories .categories-display {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 30px;
+  padding: 10px;
+  max-height: 300px;
+  -webkit-transition: max-height .4s;
+  transition: max-height .4s;
+}
+
+.categories .categories-display button {
+  color: #000;
+  margin: 0;
+  width: 100px;
+  height: 50px;
+  margin-top: 10px;
+  border-radius: 0;
+  padding: 0;
+}
+
+.categories .categories-display button:hover {
+  border-bottom: 2px solid #000;
+}
+
+.categories .categories-display.hidden {
+  max-height: 0;
+  padding: 0;
+}
+/*# sourceMappingURL=Categories.css.map */
