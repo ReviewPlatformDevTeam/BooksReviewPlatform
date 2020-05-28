@@ -1,6 +1,7 @@
 package com.uj.projects.booksplatform.book.mapper;
 
 import autofixture.publicinterface.Any;
+import com.uj.projects.booksplatform.author.entity.Author;
 import com.uj.projects.booksplatform.book.dto.BookDto;
 import com.uj.projects.booksplatform.book.entity.Book;
 import com.uj.projects.booksplatform.category.entity.Category;
@@ -28,7 +29,7 @@ public class BookMapperTests {
         // arrange
         Book book = new Book();
         String bookTitle = Any.string();
-        String bookAuthor = Any.string();
+        Author bookAuthor = Any.instanceOf(Author.class);
         String bookRelease = "2020-01-12";
         Date bookReleaseDate = new SimpleDateFormat(DateResources.dateFormat).parse(bookRelease);
 
@@ -40,7 +41,7 @@ public class BookMapperTests {
         BookDto actual = sut.bookToBookDto(book);
         // assert
         Assert.assertEquals(actual.getTitle(), bookTitle);
-        Assert.assertEquals(actual.getAuthor(), bookAuthor);
+        Assert.assertEquals(actual.getAuthor(), bookAuthor.getId());
         Assert.assertEquals(actual.getReleaseDate(), bookReleaseDate);
     }
 
@@ -48,20 +49,21 @@ public class BookMapperTests {
     public void shouldBookDtoToBook() throws ParseException{
         // arrange
         BookDto bookDto = new BookDto();
-        String bookTitle = Any.string();
-        String bookAuthor = Any.string();
+        String bookTitle = "title";
+        Integer bookAuthor = Any.intValue();
         String bookRelease = "2020-01-12";
         Date bookReleaseDate = new SimpleDateFormat(DateResources.dateFormat).parse(bookRelease);
 
         bookDto.setTitle(bookTitle);
         bookDto.setAuthor(bookAuthor);
         bookDto.setReleaseDate(bookReleaseDate);
+
         // act
         Book actual = sut.bookDtoToBook(bookDto);
 
         // assert
         Assert.assertEquals(actual.getTitle(), bookTitle);
-        Assert.assertEquals(actual.getAuthor(), bookAuthor);
+        Assert.assertEquals(actual.getAuthor().getId(), bookAuthor);
         Assert.assertEquals(actual.getReleaseDate(), bookRelease);
     }
 
