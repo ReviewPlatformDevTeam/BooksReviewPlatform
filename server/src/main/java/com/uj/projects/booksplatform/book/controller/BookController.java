@@ -41,6 +41,11 @@ public class BookController {
         return mockNotExistingProperties(bookDto);
     }
 
+    @GetMapping(params = "search")
+    public List<BookDto> searchBook(@RequestParam(name = "search") String title){
+        return bookService.searchBook(title).stream().map(bookMapper::bookToBookDto).collect(Collectors.toList());
+    }
+
     @PostMapping
     public BookDto createBook(@Valid @RequestBody BookDto bookDto){
         Book book = bookMapper.bookDtoToBook(bookDto);

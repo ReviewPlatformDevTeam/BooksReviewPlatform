@@ -1,10 +1,14 @@
 insert into category (name) values ('Fantasy')
 insert into category (name) values ('Novel')
 
+insert into authors (name, description) values ('J.K. Rowling', 'J.K. Rowling')
+insert into authors (name, description) values ('J. R. R. Tolkien', 'J. R. R. Tolkien')
+insert into authors (name, description) values ('Lucy Maud Montgomery', 'Lucy Maud Montgomery')
 
-insert into books (author, 'release', title, category_id) values ('J.K. Rowling', '1997-06-26', 'Harry Potter and the Philosopher''s Stone', 1)
-insert into books (author, 'release', title, category_id) values ('J. R. R. Tolkien', '1954-06-29', 'The Fellowship of the Ring', 1)
-insert into books (author, 'release', title, category_id) values ('Lucy Maud Montgomery', '1908-06-01', 'Anne of Green Gables', 2)
+
+insert into books (author_id, 'release', title, category_id) values (1, '1997-06-26', 'Harry Potter and the Philosopher''s Stone', 1)
+insert into books (author_id, 'release', title, category_id) values (2, '1954-06-29', 'The Fellowship of the Ring', 1)
+insert into books (author_id, 'release', title, category_id) values (3, '1908-06-01', 'Anne of Green Gables', 2)
 
 
 insert into reviews (content, score, book_id, user_id) values ('Really great', 5, 1, 1)
