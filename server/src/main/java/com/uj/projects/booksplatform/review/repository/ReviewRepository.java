@@ -9,7 +9,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ReviewRepository extends JpaRepository<Review, Integer> , ReviewCustomRepository {
+public interface ReviewRepository extends JpaRepository<Review, Integer> {
     List<Review> findReviewsByBook(Book book);
     List<Review> findReviewsByUser(User user);
+    Integer countByBook(Book book);
 }

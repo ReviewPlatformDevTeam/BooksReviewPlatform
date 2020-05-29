@@ -37,7 +37,7 @@ class UserControllerTest {
         userService = mock(UserService.class);
         passwordResetService = mock(PasswordResetService.class);
         userMapper = mock(UserMapper.class);
-//        userController = new UserController(loginService, userService, passwordResetService, userMapper);
+        userController = new UserController(loginService, userService, passwordResetService);
     }
 
     @Test

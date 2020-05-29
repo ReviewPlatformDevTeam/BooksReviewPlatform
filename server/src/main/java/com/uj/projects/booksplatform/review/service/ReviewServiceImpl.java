@@ -76,6 +76,10 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public Integer getNumberOfReviewsByBook(Integer bookId) {
-        return reviewRepository.countReviewsByBook(bookId);
+        Optional<Book> book = bookRepository.findById(bookId);
+        if(!book.isPresent()){
+            throw new NotFoundException("Book with id: " + bookId + " not found");
+        }
+        return reviewRepository.countByBook(book.get());
     }
 }

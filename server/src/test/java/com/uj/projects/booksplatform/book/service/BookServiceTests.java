@@ -1,12 +1,14 @@
 package com.uj.projects.booksplatform.book.service;
 
 import autofixture.publicinterface.Any;
+import com.uj.projects.booksplatform.author.entity.Author;
 import com.uj.projects.booksplatform.book.entity.Book;
 import com.uj.projects.booksplatform.book.repository.BookRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testng.Assert;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
@@ -74,6 +76,23 @@ public class BookServiceTests {
         // assert
         Assert.assertEquals(actual, book);
         verify(bookRepository, atLeastOnce()).save(book);
+    }
+
+    @Test
+    public void shouldCallFindByNameContainingWhileSearch(){
+        // arrange
+        String title = Any.string();
+        Book book = Any.instanceOf(Book.class);
+        List<Book> books = new ArrayList<>();
+        books.add(book);
+        when(bookRepository.findByTitleContaining(title)).thenReturn(books);
+
+        // act
+        List<Book> actual = sut.searchBook(title);
+
+        // assert
+        Assert.assertEquals(actual, books);
+        verify(bookRepository, atLeastOnce()).findByTitleContaining(title);
     }
 
 }
