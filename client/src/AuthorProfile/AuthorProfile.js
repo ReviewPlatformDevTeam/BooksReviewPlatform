@@ -37,7 +37,6 @@ export class AuthorProfile extends Component {
             authorData.photo = defaultAuthor;
         }
         this.setState({authorData: authorData})
-console.log(authorData.books);
     }
 
     createAuthorCard = () => {
