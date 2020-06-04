@@ -3,16 +3,17 @@ package com.uj.projects.booksplatform.user.controller;
 import com.uj.projects.booksplatform.user.dto.LoginRequest;
 import com.uj.projects.booksplatform.user.dto.LoginResponse;
 import com.uj.projects.booksplatform.user.dto.LoginResult;
-
-
-import com.uj.projects.booksplatform.user.dto.UserDto;
-import com.uj.projects.booksplatform.user.entity.*;
-import com.uj.projects.booksplatform.user.mapper.UserMapper;
+import com.uj.projects.booksplatform.user.entity.PasswordResetRequest;
+import com.uj.projects.booksplatform.user.entity.PasswordResetResponse;
+import com.uj.projects.booksplatform.user.entity.User;
 import com.uj.projects.booksplatform.user.service.LoginService;
 import com.uj.projects.booksplatform.user.service.PasswordResetService;
 import com.uj.projects.booksplatform.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
@@ -35,7 +36,8 @@ public class UserController {
     @PostMapping("/login")
     public LoginResponse Login(@Valid@RequestBody LoginRequest loginRequest){
         LoginResult result = loginService.Login(loginRequest.getUsername(), loginRequest.getPassword());
-        return new LoginResponse(result.isSuccess(), result.getToken());
+        User user = userService.getUserByUsername(loginRequest.getUsername());
+        return new LoginResponse(result.isSuccess(), result.getToken(), loginRequest.getUsername(), user.getEmail());
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")

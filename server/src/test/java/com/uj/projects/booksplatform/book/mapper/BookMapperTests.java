@@ -31,11 +31,13 @@ public class BookMapperTests {
         String bookTitle = Any.string();
         Author bookAuthor = Any.instanceOf(Author.class);
         String bookRelease = "2020-01-12";
+        String description = Any.string();
         Date bookReleaseDate = new SimpleDateFormat(DateResources.dateFormat).parse(bookRelease);
 
         book.setTitle(bookTitle);
         book.setAuthor(bookAuthor);
         book.setReleaseDate(bookRelease);
+        book.setDescription(description);
 
         // act
         BookDto actual = sut.bookToBookDto(book);
@@ -43,6 +45,7 @@ public class BookMapperTests {
         Assert.assertEquals(actual.getTitle(), bookTitle);
         Assert.assertEquals(actual.getAuthor(), bookAuthor.getId());
         Assert.assertEquals(actual.getReleaseDate(), bookReleaseDate);
+        Assert.assertEquals(actual.getDescription(), description);
     }
 
     @Test
@@ -52,11 +55,13 @@ public class BookMapperTests {
         String bookTitle = "title";
         Integer bookAuthor = Any.intValue();
         String bookRelease = "2020-01-12";
+        String description = Any.string();
         Date bookReleaseDate = new SimpleDateFormat(DateResources.dateFormat).parse(bookRelease);
 
         bookDto.setTitle(bookTitle);
         bookDto.setAuthor(bookAuthor);
         bookDto.setReleaseDate(bookReleaseDate);
+        bookDto.setDescription(description);
 
         // act
         Book actual = sut.bookDtoToBook(bookDto);
@@ -65,6 +70,7 @@ public class BookMapperTests {
         Assert.assertEquals(actual.getTitle(), bookTitle);
         Assert.assertEquals(actual.getAuthor().getId(), bookAuthor);
         Assert.assertEquals(actual.getReleaseDate(), bookRelease);
+        Assert.assertEquals(actual.getDescription(), description);
     }
 
     @Test

@@ -18,6 +18,7 @@ public interface BookMapper {
     @Mapping(target="releaseDate", dateFormat = DateResources.dateFormat)
     @Mapping(source = "category.name", target = "category")
     @Mapping(source = "author.id", target = "author")
+    @Mapping(source = "description", target = "description")
     BookDto bookToBookDto(Book book);
 
 }
