@@ -19,7 +19,7 @@ const getAllBooks = () => {
         .then(response => response.text())
         .then(response => JSON.parse(response))
         .catch(error => {
-            return {success: false, status: error.message}
+            return undefined
         });
 }
 
