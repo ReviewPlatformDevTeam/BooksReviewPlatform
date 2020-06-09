@@ -16,7 +16,7 @@ const Categories = (props) => {
           {categories.categories.map((cat, idx) => {
             return (
               <div className="category-link" key={idx}>
-                <a href="#">{cat}</a>
+                <a href="/">{cat}</a>
               </div>
             );
           })}
