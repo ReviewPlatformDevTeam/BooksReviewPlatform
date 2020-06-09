@@ -54,12 +54,12 @@ class UserControllerTest {
         given(userService.createUser(user)).willReturn(user);
 
         // Act
-//        UserDto newUser = userController.registerUser(requestBody);
+        User newUser = userController.registerUser(user);
 
         // Assert
-//        Assert.assertEquals(newUser.getPassword(), requestBody.getPassword());
-//        Assert.assertEquals(newUser.getUsername(), requestBody.getUsername());
-//        Assert.assertEquals(newUser.getEmail(), requestBody.getEmail());
+        Assert.assertEquals(user.getPassword(), requestBody.getPassword());
+        Assert.assertEquals(user.getUsername(), requestBody.getUsername());
+        Assert.assertEquals(user.getEmail(), requestBody.getEmail());
     }
 
     @Test
@@ -72,6 +72,8 @@ class UserControllerTest {
         String token = Any.string();
         LoginResult loginResult = new LoginResult(successLogin, token);
         when(loginService.Login(username, password)).thenReturn(loginResult);
+        User user = Any.instanceOf(User.class);
+        when(userService.getUserByUsername(username)).thenReturn(user);
 
         // Act
         LoginResponse actual = userController.Login(request);
@@ -80,6 +82,8 @@ class UserControllerTest {
         verify(loginService, atLeastOnce()).Login(username, password);
         Assert.assertTrue(actual.isSuccess());
         Assert.assertEquals(actual.getToken(), token);
+        Assert.assertEquals(actual.getUsername(), username);
+        Assert.assertEquals(actual.getEmail(), user.getEmail());
     }
 
     @SneakyThrows
