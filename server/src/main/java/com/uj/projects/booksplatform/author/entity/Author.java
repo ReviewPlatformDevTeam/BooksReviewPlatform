@@ -1,5 +1,4 @@
-package com.uj.projects.booksplatform.category.entity;
-
+package com.uj.projects.booksplatform.author.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,9 +8,9 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "category")
-@Getter @Setter @AllArgsConstructor @NoArgsConstructor
-public class Category {
+@Table(name = "authors")
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor
+public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,8 +20,10 @@ public class Category {
     @Column(name = "name")
     private String name;
 
-    public Category(String name){
-        this.name = name;
-    }
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "image_url")
+    private String imageUrl;
 
 }

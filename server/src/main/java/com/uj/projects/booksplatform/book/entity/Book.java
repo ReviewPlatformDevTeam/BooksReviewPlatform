@@ -1,5 +1,6 @@
 package com.uj.projects.booksplatform.book.entity;
 
+import com.uj.projects.booksplatform.author.entity.Author;
 import com.uj.projects.booksplatform.category.entity.Category;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,15 +15,19 @@ import javax.persistence.*;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Integer id;
 
     @Column(name = "title")
     private String title;
 
-    @Column(name = "author")
-    private String author;
+    @Column(name = "description")
+    private String description;
+
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinColumn(name = "author_id")
+    private Author author;
 
     @Column(name = "release")
     private String releaseDate;
