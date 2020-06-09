@@ -1,37 +1,89 @@
-.categories {
-  position: relative;
+.categories-display {
+  position: fixed;
+  top: 0;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 9;
 }
 
-.categories .categories-display {
-  position: absolute;
-  top: 80px;
-  left: 0;
-  right: 0;
-  overflow: hidden;
-  background: #fff;
+.categories-display.hidden {
+  display: none;
+}
+
+.categories-display .categories-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 60%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 50px 0;
   border-radius: 30px;
-  padding: 10px;
-  max-height: 300px;
-  -webkit-transition: max-height .4s;
-  transition: max-height .4s;
+  z-index: 10;
 }
 
-.categories .categories-display button {
-  color: #000;
-  margin: 0;
-  width: 100px;
-  height: 50px;
-  margin-top: 10px;
-  border-radius: 0;
-  padding: 0;
+.categories-display .categories-container .category-link {
+  -ms-flex-preferred-size: 33%;
+      flex-basis: 33%;
+  font-size: 2em;
+  margin: 20px 0;
 }
 
-.categories .categories-display button:hover {
-  border-bottom: 2px solid #000;
+.categories-display .categories-container #categories-button {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
 }
 
-.categories .categories-display.hidden {
-  max-height: 0;
-  padding: 0;
+/* .categories {
+    position: relative;
+
+    .categories-display {
+        position: absolute;
+        top: 80px;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+        background: #fff;
+        border-radius: 30px;
+        padding: 10px;
+        max-height: 300px;
+        transition: max-height 0.4s;
+
+        button {
+            &:not(.search) {
+                color: #000;
+                margin: 0;
+                width: 100px;
+                height: 50px;
+                margin-top: 10px;
+                border-radius: 0;
+                padding: 0;
+                &:hover {
+                    border-bottom: 2px solid #000;
+                }
+            }
+        }
+
+        &.hidden {
+            max-height: 0;
+            padding: 0;
+        }
+    }
 }
+ */
 /*# sourceMappingURL=Categories.css.map */

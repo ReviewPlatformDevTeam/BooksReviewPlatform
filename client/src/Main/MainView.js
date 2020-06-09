@@ -37,7 +37,7 @@ class MainView extends Component {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              width: "70vw"
+              width: "100vw"
             }}
           >
             <img src={logo} alt='logo' style={{width: "40%", height: "auto"}} />
