@@ -1,29 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Categories.css';
 import * as categories from '../../Mocks/categories.json';
 
 const Categories = (props) => {
 
   const [showCategories, switchCategories] = useState(false);
-
-  const returnCategories = () => {
-    return (
-      <div className="categories-display">
-        <div className="categories-container">
-          {categories.categories.map((cat, idx) => {
-            return (
-              <div key={idx}>
-                <a href="#">{cat}</a>
-              </div>
-            );
-          })}
-        </div>
-        <button onClick={() => switchCategories(false)}>
-          Close
-                </button>
-      </div>
-    )
-  }
 
   return (
     <div className="categories">
