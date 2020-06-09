@@ -15,6 +15,4 @@ public interface ReviewMapper {
     @Mapping(source = "book", target = "book.id")
     @Mapping(source = "user", target = "user.id")
     Review reviewDtoToReview(ReviewDto reviewDto);
-
-
 }

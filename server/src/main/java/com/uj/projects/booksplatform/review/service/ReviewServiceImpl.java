@@ -57,7 +57,7 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public List<Review> getByBook(Integer id) {
+    public List<Review> getByBookId(Integer id) {
         Optional<Book> book = bookRepository.findById(id);
         if(!book.isPresent()){
             throw new NotFoundException("Book with id: " + id + " not found");
@@ -66,7 +66,7 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public List<Review> getByUser(Integer id) {
+    public List<Review> getByUserId(Integer id) {
         Optional<User> user = userRepository.findById(id);
         if(!user.isPresent()){
             throw new NotFoundException("User with id: " + id + " not found");
@@ -75,7 +75,7 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public Integer getNumberOfReviewsByBook(Integer bookId) {
+    public Integer getNumberOfReviewsByBookId(Integer bookId) {
         Optional<Book> book = bookRepository.findById(bookId);
         if(!book.isPresent()){
             throw new NotFoundException("Book with id: " + bookId + " not found");

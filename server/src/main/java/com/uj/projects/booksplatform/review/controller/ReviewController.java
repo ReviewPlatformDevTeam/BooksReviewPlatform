@@ -36,17 +36,16 @@ public class ReviewController {
 
     @GetMapping(params = "book")
     public List<ReviewDto> getReviewsByBook(@RequestParam(name = "book") Integer bookId){
-        return reviewService.getByBook(bookId).stream().map(reviewMapper::reviewToReviewDto).collect(Collectors.toList());
+        return reviewService.getByBookId(bookId).stream().map(reviewMapper::reviewToReviewDto).collect(Collectors.toList());
     }
 
     @GetMapping(params = "user")
     public List<ReviewDto> getReviewsByUser(@RequestParam(name = "user") Integer userId){
-        return reviewService.getByUser(userId).stream().map(reviewMapper::reviewToReviewDto).collect(Collectors.toList());
+        return reviewService.getByUserId(userId).stream().map(reviewMapper::reviewToReviewDto).collect(Collectors.toList());
     }
 
     @PostMapping
     public ReviewDto createReview(@RequestBody ReviewDto reviewDto){
-        reviewDto.setId(0);
         Review review = reviewMapper.reviewDtoToReview(reviewDto);
         Review createdReview = reviewService.create(review);
         return reviewMapper.reviewToReviewDto(createdReview);

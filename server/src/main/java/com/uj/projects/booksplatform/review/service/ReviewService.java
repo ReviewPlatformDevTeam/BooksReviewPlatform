@@ -10,7 +10,7 @@ public interface ReviewService {
     void delete(Integer id);
     Review update(Review review);
     Review getById(Integer id);
-    List<Review> getByBook(Integer id);
-    List<Review> getByUser(Integer id);
-    Integer getNumberOfReviewsByBook(Integer bookId);
+    List<Review> getByBookId(Integer id);
+    List<Review> getByUserId(Integer id);
+    Integer getNumberOfReviewsByBookId(Integer bookId);
 }

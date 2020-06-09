@@ -1,10 +1,6 @@
 package com.uj.projects.booksplatform.review.service;
 
 import autofixture.publicinterface.Any;
-import com.uj.projects.booksplatform.author.entity.Author;
-import com.uj.projects.booksplatform.author.repository.AuthorRepository;
-import com.uj.projects.booksplatform.author.service.AuthorService;
-import com.uj.projects.booksplatform.author.service.AuthorServiceImpl;
 import com.uj.projects.booksplatform.book.entity.Book;
 import com.uj.projects.booksplatform.book.repository.BookRepository;
 import com.uj.projects.booksplatform.review.entity.Review;
@@ -101,7 +97,7 @@ public class ReviewServiceImplTest {
         when(bookRepository.findById(bookId)).thenReturn(Optional.of(book));
 
         // act
-        List<Review> actual = sut.getByBook(bookId);
+        List<Review> actual = sut.getByBookId(bookId);
 
         // assert
         Assert.assertEquals(actual, reviews);
@@ -121,7 +117,7 @@ public class ReviewServiceImplTest {
         when(userRepository.findById(userId)).thenReturn(Optional.of(user));
 
         // act
-        List<Review> actual = sut.getByUser(userId);
+        List<Review> actual = sut.getByUserId(userId);
 
         // assert
         Assert.assertEquals(actual, reviews);
@@ -140,7 +136,7 @@ public class ReviewServiceImplTest {
         when(bookRepository.findById(bookId)).thenReturn(Optional.of(book));
 
         // act
-        Integer actual = sut.getNumberOfReviewsByBook(bookId);
+        Integer actual = sut.getNumberOfReviewsByBookId(bookId);
 
         // assert
         Assert.assertEquals(actual, numberOfReviews);

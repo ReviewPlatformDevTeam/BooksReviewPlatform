@@ -68,7 +68,7 @@ public class BookController {
 
     private BookDto mockNotExistingProperties(BookDto bookDto){
         bookDto.setScore(5.0F);
-        bookDto.setNumOfReviews(reviewService.getNumberOfReviewsByBook(bookDto.getId()));
+        bookDto.setNumOfReviews(reviewService.getNumberOfReviewsByBookId(bookDto.getId()));
         return bookDto;
     }
 }
