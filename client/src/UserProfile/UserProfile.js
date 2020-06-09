@@ -21,11 +21,14 @@ export class UserProfile extends Component {
     }
 
     loadUserData() {
-        let userData = data;
-        if(userData.image.length === 0) {
-            userData.image = defaultPicture;
+        let user = window.localStorage.getItem('user');
+        user = JSON.parse(user);
+
+        if(user.image === undefined || user.image.length === 0) {
+            user.image = defaultPicture;
         }
-        this.setState({userData: userData})
+
+        this.setState({userData: user})
     }
 
     createUserCard = () => {
@@ -33,7 +36,7 @@ export class UserProfile extends Component {
             <Card
                 className='userCard'
                 cover={<img alt="" src={this.state.userData.image} />}>
-                    <b>Username: </b>{this.state.userData.username}
+                    <b>Username: </b>{this.state.userData.name}
                     <br />
                     <b>Email: </b>{this.state.userData.email}
             </Card>
