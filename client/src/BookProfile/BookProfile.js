@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import userMock from '../Mocks/user.json';
-import reviewsMock from '../Mocks/reviews.json';
 import { Card, Comment, List, Layout, Form, Button, Input, Spin } from 'antd';
 import './BookProfile.css';
 import Rater from 'react-rater';
 import { withRouter } from "react-router-dom";
 import defaultBook from '../pictures/bookSmile.png';
-import moment from 'moment';
 import { bookProfileService } from './services/BookProfileService';
 
-// TODO - delete after field implemented on backend
+// TODO - delete user id from mock when it will be implemented
 const mockDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
                          "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure " +
                          "dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non " +
@@ -69,22 +67,30 @@ export class BookProfile extends Component {
         this.setState({
           submitting: true,
         });
-    
+
         setTimeout(() => {
-            this.setState({
-                submitting: false,
-                value: '',
-                score: 0,
-                reviews: [
+
+            let reviewData = {
+                user: userMock.id,
+                content: this.state.value,
+                score: this.state.score,
+                book: this.state.bookId,
+            }
+
+            bookProfileService.addReviewForBook(reviewData).then(resp =>
                 {
-                    author: userMock.username,
-                    date: moment().format('YYYY-MM-DD'),
-                    review: this.state.value,
-                    score: this.state.score
-                },
-                ...this.state.reviews,
-                ],
-            });
+                    this.setState({
+                        submitting: false,
+                        value: '',
+                        score: 0,
+                        reviews: [
+                            reviewData,
+                            ...this.state.reviews,
+                        ],
+                    });
+                }
+            );
+
             }, 1000);
       };
 
@@ -119,7 +125,12 @@ export class BookProfile extends Component {
     }
 
     loadReviews() {
-        this.setState({reviews: reviewsMock.reviews});
+        bookProfileService.getReviewsForBook(this.state.bookId).then(resp =>
+            {
+                let reviewData = resp;
+                this.setState({reviews: reviewData.reverse(), loading: false});
+            }
+        );
     }
 
     createBookCard = () => {
@@ -176,8 +187,10 @@ export class BookProfile extends Component {
     commentHeader = (item) => {
         return (
             <div>
-                <strong style={{paddingRight: '10px'}}>{item.author}</strong>
-                <div style={{fontSize: 'large'}}><Rater total={5} rating={item.score} interactive={false}/> {item.score}</div>
+                <strong style={{paddingRight: '10px'}}>{item.user}</strong>
+                <div style={{fontSize: 'large'}}><Rater total={5}
+                                                        rating={parseInt(item.score)}
+                                                        interactive={false}/> {parseInt(item.score)}</div>
             </div>
         );
     }
@@ -196,9 +209,8 @@ export class BookProfile extends Component {
                 <List.Item>
                     <Comment
                     author={this.commentHeader(item)}
-                    datetime={item.date}
                     avatar={'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'}
-                    content={item.review}
+                    content={item.content}
                     />
                 </List.Item>
                 )}

@@ -25,4 +25,46 @@ const getBookById = (id) => {
         });
 }
 
-export const bookProfileService = { getBookById };
+const getReviewsForBook = (book) => {
+    let reviewHeaders = new Headers();
+    reviewHeaders.append("Authorization", `Bearer ${commonService.getToken()}`);
+
+    const url = `${API_URL}/reviews?book=${book}`;
+
+    let reviewData = {
+        method: 'GET',
+        headers: reviewHeaders,
+        redirect: 'follow',
+        mode: "cors",
+    };
+
+    return fetch(url, reviewData)
+        .then(response => commonService.checkStatus(response)).then(response => response.text())
+        .then(response => JSON.parse(response)).catch(error => {
+            return {success: false, status: error.message}
+        });
+}
+
+const addReviewForBook = (data) => {
+    const url = `${API_URL}/reviews`;
+    let addReviewHeaders = new Headers();
+    addReviewHeaders.append("Authorization", `Bearer ${commonService.getToken()}`);
+    addReviewHeaders.append("Content-Type", "application/json");
+    let raw = JSON.stringify(data);
+
+    let addReviewData = {
+        method: 'POST',
+        headers: addReviewHeaders,
+        redirect: 'follow',
+        mode: "cors",
+        body: raw
+    };
+
+    return fetch(url, addReviewData)
+        .then(response => commonService.checkStatus(response)).then(response => response.text())
+        .then(response => JSON.parse(response)).catch(error => {
+            return {success: false, status: error.message}
+        });
+}
+
+export const bookProfileService = { getBookById, getReviewsForBook, addReviewForBook };
