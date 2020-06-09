@@ -28,4 +28,4 @@ node_modules
 #Env
 sendgrid.env
 .env
-.idea/
+.idea
