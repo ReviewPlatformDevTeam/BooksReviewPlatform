@@ -18,11 +18,14 @@ public class BookDto {
     @NotBlank
     private String title;
 
-    @NotBlank
-    private String author;
+    @NotNull
+    private Integer author;
 
     @NotBlank
     private String category;
+
+    @NotBlank
+    private String description;
 
     @DateTimeFormat(pattern = DateResources.dateFormat)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DateResources.dateFormat, timezone = JsonFormat.DEFAULT_TIMEZONE)

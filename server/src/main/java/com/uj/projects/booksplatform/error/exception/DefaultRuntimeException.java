@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +21,7 @@ public class DefaultRuntimeException extends RuntimeException {
     }
 
     public DefaultRuntimeException(String errorMessage) {
+        additionalMessages = new LinkedList<>();
         additionalMessages.add(errorMessage);
     }
     public DefaultRuntimeException(String parameter, String errorMessage){
