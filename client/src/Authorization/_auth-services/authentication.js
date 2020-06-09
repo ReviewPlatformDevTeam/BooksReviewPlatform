@@ -1,12 +1,6 @@
+import { commonService } from '../../Common/services/CommonService';
 const API_URL = process.env.REACT_APP_API_URL;
 const userKey = { key: 'user' };
-
-const checkStatus = (response) => {
-    if(!response.ok) {
-        throw Error(response.status);
-    }
-    return response;
-}
 
 const login = (username, password) => {
     const url = `${API_URL}/login`;
@@ -29,7 +23,7 @@ const login = (username, password) => {
     };
 
     return fetch(url, fetchData)
-        .then(response => checkStatus(response))
+        .then(response => commonService.checkStatus(response))
         .then(response => response.text())
         .then(response => JSON.parse(response))
         .catch(error => {
@@ -69,7 +63,7 @@ const reset = (email) => {
     };
 
     return fetch(`${API_URL}/resetPassword`, fetchData)
-        .then(response => checkStatus(response))
+        .then(response => commonService.checkStatus(response))
         .then(response => response.text())
         .then(response => JSON.parse(response))
         .catch(error => {
@@ -94,7 +88,7 @@ const register = (addUser) => {
     };
 
     return fetch(url, fetchData)
-        .then(response => checkStatus(response))
+        .then(response => commonService.checkStatus(response))
         .then(response => response.text())
         .then(response => JSON.parse(response))
         .catch(error => {
