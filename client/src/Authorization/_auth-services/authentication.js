@@ -77,7 +77,6 @@ const register = (addUser) => {
 
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("Content-Type", "text/plain");
 
     let raw = JSON.stringify(addUser);
 
