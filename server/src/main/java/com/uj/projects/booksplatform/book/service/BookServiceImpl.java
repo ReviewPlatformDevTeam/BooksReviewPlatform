@@ -46,4 +46,9 @@ public class BookServiceImpl implements BookService{
         }
         return book.get();
     }
+
+    @Override
+    public List<Book> searchBook(String title) {
+        return bookRepository.findByTitleContaining(title);
+    }
 }

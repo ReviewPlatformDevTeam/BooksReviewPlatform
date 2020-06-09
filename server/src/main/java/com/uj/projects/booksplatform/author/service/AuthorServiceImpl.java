@@ -41,4 +41,9 @@ public class AuthorServiceImpl implements AuthorService {
     public Author getById(Integer id) {
         return authorRepository.getOne(id);
     }
+
+    @Override
+    public List<Author> search(String name) {
+        return authorRepository.findByNameContaining(name);
+    }
 }

@@ -10,4 +10,5 @@ public interface AuthorService {
     void delete(Integer id);
     Author update(Author author);
     Author getById(Integer id);
+    List<Author> search(String name);
 }

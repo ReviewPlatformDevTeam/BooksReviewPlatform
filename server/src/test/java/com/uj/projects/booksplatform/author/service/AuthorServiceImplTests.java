@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testng.Assert;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
@@ -75,6 +76,23 @@ public class AuthorServiceImplTests {
         // assert
         Assert.assertEquals(actual, author);
         verify(authorRepository, atLeastOnce()).save(author);
+    }
+
+    @Test
+    public void shouldCallFindByNameContainingWhileSearch(){
+        // arrange
+        String name = Any.string();
+        Author author = Any.instanceOf(Author.class);
+        List<Author> authors = new ArrayList<>();
+        authors.add(author);
+        when(authorRepository.findByNameContaining(name)).thenReturn(authors);
+
+        // act
+        List<Author> actual = sut.search(name);
+
+        // assert
+        Assert.assertEquals(actual, authors);
+        verify(authorRepository, atLeastOnce()).findByNameContaining(name);
     }
 
 }

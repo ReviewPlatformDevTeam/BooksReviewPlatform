@@ -30,6 +30,11 @@ public class AuthorController {
         return authorService.getById(id);
     }
 
+    @GetMapping(params = "search")
+    public List<Author> searchAuthor(@RequestParam(name = "search") String name){
+        return authorService.search(name);
+    }
+
     @PostMapping
     public Author createAuthor(@Valid @RequestBody Author author){
         return authorService.create(author);
