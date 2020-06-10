@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import data from '../Mocks/user.json';
 import { Card } from 'antd';
 import './UserProfile.css';
 import { withRouter } from "react-router-dom";
