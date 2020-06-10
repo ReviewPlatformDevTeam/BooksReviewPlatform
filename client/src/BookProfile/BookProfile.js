@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import userMock from '../Mocks/user.json';
 import { Card, Comment, List, Layout, Form, Button, Input, Spin } from 'antd';
 import './BookProfile.css';
 import Rater from 'react-rater';
@@ -7,7 +6,7 @@ import { withRouter } from "react-router-dom";
 import defaultBook from '../pictures/bookSmile.png';
 import { bookProfileService } from './services/BookProfileService';
 
-// TODO - delete user id from mock when it will be implemented
+
 const mockDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
                          "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure " +
                          "dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non " +
@@ -69,9 +68,11 @@ export class BookProfile extends Component {
         });
 
         setTimeout(() => {
+            let user = window.localStorage.getItem('user');
+            user = JSON.parse(user);
 
             let reviewData = {
-                user: userMock.id,
+                user: user.id,
                 content: this.state.value,
                 score: this.state.score,
                 book: this.state.bookId,
