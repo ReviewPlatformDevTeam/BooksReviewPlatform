@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import data from '../Mocks/authors.json';
 import { Card } from 'antd';
 import './AuthorProfile.css';
 import { withRouter } from "react-router-dom";
 import defaultAuthor from '../pictures/authorDefault.png';
+import {authorProfileService} from "./services/AuthorProfileService";
+import {bookListService} from "../BooksList/services/BookListService";
 
 const defaultAuthorId = 1;
 
@@ -30,21 +31,29 @@ export class AuthorProfile extends Component {
     }
 
     loadAuthorData() {
-        let authorData = Object.keys(data).filter(item => { return data[item].id === this.state.authorId })[0];
-        authorData = data[authorData];
 
-        if(authorData.photo.length === 0) {
-            authorData.photo = defaultAuthor;
-        }
-        this.setState({authorData: authorData})
+        authorProfileService.getAuthorById(this.state.authorId).then(resp =>
+            {
+                let authorData = resp;
+                if(authorData.imageUrl === null || authorData.imageUrl.length === 0) {
+                    authorData.imageUrl = defaultAuthor;
+                }
+
+                bookListService.getAllBooks().then(books => {
+                    authorData.books = books.filter(book => this.state.authorId === book.author);
+                    this.setState({authorData: authorData, loading: false});
+                });
+            }
+        );
+
     }
 
     createAuthorCard = () => {
         return (
             <Card
                 className='authorCard'
-                cover={<img alt="" src={this.state.authorData.photo} />}>
-                     <p><b> {this.state.authorData.author} </b></p>
+                cover={<img alt="" src={this.state.authorData.imageUrl} />}>
+                     <p><b> {this.state.authorData.name} </b></p>
 
             </Card>
         );
@@ -67,7 +76,7 @@ export class AuthorProfile extends Component {
 
     createDetailsCard = () => {
                 const autBooks = this.state.authorData.books.map(item => <div
-    onClick={ e => this.props.history.push(`/book/${item.bid}`)}
+    onClick={ e => this.props.history.push(`/book/${item.id}`)}
     className='detailsCard'
 
         key = {item.bid}

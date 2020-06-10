@@ -1,30 +1,47 @@
 import React, { Component } from 'react';
-import data from '../Mocks/authors.json';
 import './AuthorsList.css';
 import { withRouter } from "react-router-dom";
+import { authorsListService } from './services/AuthorsListService';
+import {Spin} from "antd";
 
 
 class AuthorsList extends Component {
 
-    render(){
+    constructor (props) {
+        super(props);
+        this.state = {
+            authorsListData: undefined,
+            loading: true
+        };
+    }
 
-        const carNode = Object.keys(data).map(item =>
-            <span key={data[item].id} onClick={ e => window.setTimeout(() => {
-             this.props.history.push(`/author/${data[item].id}`)}, 500) } >
+    componentDidMount() {
+        authorsListService.getAllAuthors().then(resp => this.setState({authorsListData: resp, loading: false}));
+    }
+
+    renderAuthorsList = () => {
+        const authorsNode = this.state.authorsListData.map(item =>
+            <span key={item.id} onClick={ e => window.setTimeout(() => {
+                this.props.history.push(`/author/${item.id}`)}, 500) } >
 
             <div className="authorContainer">
                 <div className="photoContainer">
-                      <img src={data[item].photo} alt=""/>
+                      <img src={item.imageUrl} alt=""/>
                  </div>
-                <p><b>{data[item].author}</b></p>
+                <p><b>{item.name}</b></p>
             </div>
             </span>)
 
+        return authorsNode;
+    }
 
+    render(){
         return (
-            <div className="authorListContainer">
-        {carNode}
-            </div>
+            <Spin size="large" style={{height: '100vh'}} spinning={this.state.loading} >
+                <div className="authorListContainer">
+                    { this.state.authorsListData ? this.renderAuthorsList(): null }
+                </div>
+            </Spin>
     );
     }
 }
