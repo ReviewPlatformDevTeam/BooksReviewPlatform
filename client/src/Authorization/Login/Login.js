@@ -36,7 +36,8 @@ class Login extends Component {
         const response = await authService.login(username, password);
         if(response.success) {
             const user = {
-                name: username,
+                name: response.username,
+                email: response.email,
                 token: response.token
             }
             authService.authenticateUser(user);

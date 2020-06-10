@@ -37,7 +37,11 @@ public class UserController {
     public LoginResponse Login(@Valid@RequestBody LoginRequest loginRequest){
         LoginResult result = loginService.Login(loginRequest.getUsername(), loginRequest.getPassword());
         User user = userService.getUserByUsername(loginRequest.getUsername());
-        return new LoginResponse(result.isSuccess(), result.getToken(), loginRequest.getUsername(), user.getEmail());
+        return new LoginResponse(result.isSuccess(),
+                result.getToken(),
+                user.getEmail(),
+                loginRequest.getUsername(),
+                user.getId());
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
