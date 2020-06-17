@@ -39,7 +39,7 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public Author getById(Integer id) {
-        return authorRepository.getOne(id);
+        return authorRepository.findById(id).get();
     }
 
     @Override
