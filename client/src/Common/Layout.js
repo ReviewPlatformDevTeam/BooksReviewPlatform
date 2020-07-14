@@ -21,7 +21,7 @@ class CustomLayout extends React.Component{
     }
 
     setMenu() {
-        let authorizedMenuPaths = ['/signedin', '/booksList', '/profile'];
+        let authorizedMenuPaths = ['/signedin', '/booksList', '/profile', '/home'];
         let type = authorizedMenuPaths.includes(window.location.pathname)
             || window.location.pathname.startsWith("/book")
             || window.location.pathname.startsWith("/author")
@@ -59,16 +59,11 @@ class CustomLayout extends React.Component{
             <Menu
                 theme="light"
                 mode="horizontal"
-                style={{lineHeight: '64px'}} >
+                style={{lineHeight: '64px', width: '100%'}} >
                 <Menu.Item
                     key="home"
-                    style={{float: 'center', marginLeft: '-5%'}}>
-                    <Link to="/signedin"><HomeOutlined />Home</Link>
-                </Menu.Item>
-                <Menu.Item
-                    key="ranking"
-                    style={{float: 'center', marginLeft: '2%'}}>
-                    <Link to="/signedin"><RiseOutlined />Ranking</Link>
+                    style={{float: 'center'}}>
+                    <Link to="/home"><HomeOutlined />Home</Link>
                 </Menu.Item>
                 <Menu.Item
                     key="profile"
@@ -105,9 +100,9 @@ class CustomLayout extends React.Component{
         return (
         <Layout className="layout">
             <Header style={{ position: 'fixed', zIndex: 1, width: '100%', background: '#ffffff' }}>
-                <div style={{color: "black", float: "left", width: "200px"}}>
+                <div style={{color: "black", float: "left", width: "350px"}}>
                     <img src={logo} alt='logo'/>
-                    <Link style={{color: "black"}} to={this.iconPath}>  Book Review Platform </Link>
+                    <Link style={{color: "black", fontSize: '20px'}} to={this.iconPath}>  Book Review Platform </Link>
                 </div>
                 <this.renderMenu />
             </Header>

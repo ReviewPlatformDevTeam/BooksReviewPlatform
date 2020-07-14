@@ -23,8 +23,8 @@
   height: 60px;
   background: none;
   border: 0;
-  border-bottom: 3px solid #fff;
-  color: #fff;
+  border-bottom: 3px solid #000;
+  color: #000;
   font-size: 2em;
   margin-bottom: 100px;
   padding: 0 20px;
@@ -33,7 +33,7 @@
 }
 
 .search-books-form .search-bar input:focus {
-  border: 3px solid #fff;
+  border: 3px solid #000;
   border-radius: 30px;
   background-color: #fff;
   color: #000;
@@ -51,13 +51,13 @@
 }
 
 .search-books-form button:not(.search) {
-  border: 3px solid #fff;
+  border: 3px solid #000;
   border-radius: 20px;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(0, 0, 0, 0.2);
   width: 180px;
   height: 80px;
   font-size: 1.8em;
-  color: white;
+  color: #000;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   -ms-flex-preferred-size: 40%;
@@ -66,7 +66,7 @@
 }
 
 .search-books-form button:not(.search):hover {
-  background-color: white;
-  color: #000;
+  background-color: #000;
+  color: #fff;
 }
 /*# sourceMappingURL=SearchBooks.css.map */

@@ -9,6 +9,7 @@ import BookProfile from './BookProfile/BookProfile';
 import UserProfile from './UserProfile/UserProfile';
 import AuthorsList from './AuthorsList/AuthorsList';
 import AuthorProfile from './AuthorProfile/AuthorProfile';
+import SearchBooks from './SearchBooks/SearchBooks';
 
 
 const BaseRouter = () => (
@@ -24,6 +25,7 @@ const BaseRouter = () => (
        <Route path="/authorsList" component={AuthorsList} />
        <Route path="/author" component={AuthorProfile} />
        <Route path="/profile" component={UserProfile} />
+       <Route path="/home" component={SearchBooks} />
        <Route path="/" component={MainView} />
 
    </Switch>
