@@ -62,7 +62,7 @@ class Login extends Component {
         const { username, password, submitted, redirect } = this.state;
 
         if(redirect) {
-            return (<Redirect to='/signedin' />);
+            return (<Redirect to='/home' />);
         }
 
         return (

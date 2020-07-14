@@ -2,7 +2,7 @@ import React from 'react';
 import { Layout, Menu } from 'antd';
 import { Link, withRouter } from 'react-router-dom';
 import logo from '../pictures/Common_logo.png';
-import { HomeOutlined, UserOutlined, RiseOutlined, TeamOutlined, ReadOutlined } from '@ant-design/icons';
+import { HomeOutlined, UserOutlined, TeamOutlined, ReadOutlined } from '@ant-design/icons';
 import { authService } from "../Authorization/_auth-services/authentication";
 
 
@@ -21,13 +21,14 @@ class CustomLayout extends React.Component{
     }
 
     setMenu() {
-        let authorizedMenuPaths = ['/signedin', '/booksList', '/profile', '/home'];
+        let authorizedMenuPaths = ['/booksList', '/profile', '/home'];
         let type = authorizedMenuPaths.includes(window.location.pathname)
             || window.location.pathname.startsWith("/book")
             || window.location.pathname.startsWith("/author")
+            || window.location.pathname.startsWith("/category")
             ? "authorized": "non-authorized";
 
-        if (type === "authorized") this.iconPath = '/signedin';
+        if (type === "authorized") this.iconPath = '/home';
         else this.iconPath = '/';
 
         this.menuType = type;

@@ -16,7 +16,6 @@ const BaseRouter = () => (
    <Switch>
        <Route path="/login" component={LoginView} />
        <Route path="/register" component={RegistrationView} />
-       <Route path="/signedin" />
        <Route path="/signedup" />
        <Route path="/resetPassword" component={PasswordResetView} />
        <Route path="/signedout" component={MainView} />
@@ -26,6 +25,7 @@ const BaseRouter = () => (
        <Route path="/author" component={AuthorProfile} />
        <Route path="/profile" component={UserProfile} />
        <Route path="/home" component={SearchBooks} />
+       <Route path="/category" component={BooksList} />
        <Route path="/" component={MainView} />
 
    </Switch>
