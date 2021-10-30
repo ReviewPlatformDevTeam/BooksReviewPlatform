@@ -6,8 +6,6 @@ import intro from '../pictures/MainView_intro.png';
 import contact from '../pictures/MainView_contact.png';
 import { DownOutlined, FacebookOutlined, TwitterOutlined, SkypeOutlined, InstagramOutlined } from '@ant-design/icons';
 
-import SearchBooks from '../SearchBooks/SearchBooks';
-
 
 class MainView extends Component {
   state = {
@@ -41,7 +39,6 @@ class MainView extends Component {
             }}
           >
             <img src={logo} alt='logo' style={{width: "40%", height: "auto"}} />
-            <SearchBooks />
           </div>
         </QueueAnim>
         <DownOutlined style={{ fontSize: "30px", top: "90%", color: "white", position: "absolute" }} />
